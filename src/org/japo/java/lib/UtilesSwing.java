@@ -16,12 +16,25 @@
 package org.japo.java.lib;
 
 import javax.swing.JFrame;
+import javax.swing.UIManager;
 
 /**
  *
  * @author José A. Pacheco Ondoño - joanpaon@gmail.com
  */
 public class UtilesSwing {
+
+    // LnF - UNIX
+    public static final String GTK = "com.sun.java.swing.plaf.gtk.GTKLookAndFeel";
+
+    // LnF - WINDOWS
+    public static final String WINDOWS = "com.sun.java.swing.plaf.windows.WindowsLookAndFeel";
+    public static final String WINDOWS_CLASSIC = "com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel";
+    
+    // LnF
+    public static final String MOTIF = "com.sun.java.swing.plaf.motif.MotifLookAndFeel";
+    public static final String METAL = "javax.swing.plaf.metal.MetalLookAndFeel";
+    public static final String NIMBUS = "javax.swing.plaf.nimbus.NimbusLookAndFeel";
 
     // Cerrar programa
     public static void terminarPrograma(JFrame f) {
@@ -38,11 +51,7 @@ public class UtilesSwing {
     // Establecer LnF
     public static void establecerLnF(String lnf) {
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if (lnf.equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                }
-            }
+            UIManager.setLookAndFeel(lnf);
         } catch (Exception e) {
             System.out.println(e.getLocalizedMessage());
         }

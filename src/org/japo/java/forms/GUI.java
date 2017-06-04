@@ -56,6 +56,27 @@ public class GUI extends javax.swing.JFrame {
         // Icono Ventana - Recurso
         URL urlICN = ClassLoader.getSystemResource("img/favicon.png");
         setIconImage(new ImageIcon(urlICN).getImage());
+
+        // Otras inicializaciones
+    }
+
+    // Persistencia > Estado Actual
+    private void restaurarEstado() {
+        // Carga Propiedades App
+        prpApp = UtilesApp.cargarPropiedades();
+
+        // Establece Lnf
+        UtilesSwing.establecerLnF(prpApp.getProperty("lnf",
+            UtilesSwing.WINDOWS));
+
+        // Activa Singleton
+        if (!UtilesApp.activarInstancia(
+            prpApp.getProperty("puerto_bloqueo",
+            UtilesApp.PUERTO_BLOQUEO))) {
+            UtilesSwing.terminarPrograma(this);
+        }
+
+        // Otras propiedades
     }
 
     /**
@@ -69,6 +90,11 @@ public class GUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Here comes the Title");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -85,9 +111,13 @@ public class GUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        procesarCerrarVentana(evt);
+    }//GEN-LAST:event_formWindowClosing
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-    
+    //
     // Evento de Ventana - Cerrando
     public void procesarCerrarVentana(WindowEvent e) {
         // Memorizar Estado Actual
@@ -99,17 +129,6 @@ public class GUI extends javax.swing.JFrame {
         // Memoriza Estado Actual
 
         // Guardar Estado Actual
-        UtilesApp.guardarPropiedades(prpApp);
-    }
-
-    // Persistencia > Estado Actual
-    private void restaurarEstado() {
-        // Carga Propiedades App
-        prpApp = UtilesApp.cargarPropiedades();
-
-        // Establece Lnf
-        UtilesSwing.establecerLnF(prpApp.getProperty("lnf", "windows"));
-
-        // Otras propiedades
+//        UtilesApp.guardarPropiedades(prpApp);
     }
 }

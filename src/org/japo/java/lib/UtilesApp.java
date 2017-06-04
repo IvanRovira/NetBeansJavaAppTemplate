@@ -119,4 +119,30 @@ public class UtilesApp {
         // Devuelve Estado
         return instanciaOK;
     }
+
+    // Activa Instancia Única
+    public static boolean activarInstancia(String dato) {
+        // Semaforo Estado
+        boolean instanciaOK;
+
+        try {
+            // Conversión numérica
+            int puerto = Integer.parseInt(dato);
+
+            // Abre un ServerSocket al puerto de bloqueo
+            ServerSocket ss = new ServerSocket(puerto);
+
+            // Marca Semáforo
+            instanciaOK = true;
+        } catch (IOException | NumberFormatException e) {
+            // Marca Semáforo
+            instanciaOK = false;
+
+            // Mensaje Informativo
+            System.out.println(e.getLocalizedMessage());
+        }
+
+        // Devuelve Estado
+        return instanciaOK;
+    }
 }

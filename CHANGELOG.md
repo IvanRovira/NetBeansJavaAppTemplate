@@ -1,5 +1,17 @@
 <pre>
 
+Version 0.6.2 - 04/06/2017
+==========================
+
+Updated
+-------
+> README.md
+> CHANGELOG.md
+> org.japo.java.forms.GUI.java
+> org.japo.java.forms.UtilesApp.java - Singleton Activated
+> org.japo.java.forms.UtilesSwing.java - Windows LnF Selected
+---
+
 Version 0.6.1 - 29/05/2017
 ==========================
 
