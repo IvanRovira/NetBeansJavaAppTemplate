@@ -1,5 +1,15 @@
 <pre>
 
+Version 0.6.4 - 08/06/2017
+==========================
+
+Updated
+-------
+> README.md
+> CHANGELOG.md
+> org.japo.java.lib.UtilesSwing.java
+---
+
 Version 0.6.3 - 06/06/2017
 ==========================
 

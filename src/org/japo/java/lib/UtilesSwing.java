@@ -15,8 +15,22 @@
  */
 package org.japo.java.lib;
 
+import java.awt.HeadlessException;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.ClipboardOwner;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.IOException;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -30,7 +44,7 @@ public class UtilesSwing {
     // LnF - WINDOWS
     public static final String WINDOWS = "com.sun.java.swing.plaf.windows.WindowsLookAndFeel";
     public static final String WINDOWS_CLASSIC = "com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel";
-    
+
     // LnF
     public static final String MOTIF = "com.sun.java.swing.plaf.motif.MotifLookAndFeel";
     public static final String METAL = "javax.swing.plaf.metal.MetalLookAndFeel";
@@ -52,8 +66,59 @@ public class UtilesSwing {
     public static void establecerLnF(String lnf) {
         try {
             UIManager.setLookAndFeel(lnf);
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | IllegalAccessException
+            | InstantiationException | UnsupportedLookAndFeelException e) {
             System.out.println(e.getLocalizedMessage());
         }
+    }
+
+    // Escalar/Asignar Image > Etiqueta
+    public static void asignarImagenEscalada(JLabel lblImagen, Image imgOriginal) {
+        // Obtiene la imagen escalada
+        Image imgEscalada = imgOriginal.getScaledInstance(
+              lblImagen.getSize().width,
+              lblImagen.getSize().height,
+              Image.SCALE_FAST);
+
+        // Image (Final) > Icon
+        Icon i = new ImageIcon(imgEscalada);
+
+        // Icon > Etiqueta Imagen
+        lblImagen.setIcon(i);
+    }
+
+    // Obtiene el texto copiado al portapapeles
+    public static String obtenerTextoPortapapeles() {
+        // Referencia al texto del portapapeles
+        String result = "";
+
+        try {
+            // Acceso al portapapeles
+            Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+
+            // Contenido del Portapapeles
+            // El parámetro de getContents no se usa
+            Transferable contents = clipboard.getContents(null);
+
+            // Extrae texto del portapapeles
+            result = (String) contents.getTransferData(DataFlavor.stringFlavor);
+        } catch (HeadlessException | UnsupportedFlavorException | IOException e) {
+            System.out.println(e);
+        }
+
+        // Texto extraido
+        return result;
+    }
+
+    // Coloca texto en el portapapeles
+    public static void ponerTextoPortapapeles(String texto, ClipboardOwner propietario) {
+        // Entidad que implementa la capacidad de transmitir texto
+        StringSelection transmisor = new StringSelection(texto);
+
+        // Acceso al portapapeles
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+
+        // Transmisión de texto
+        clipboard.setContents(transmisor, propietario);
     }
 }
