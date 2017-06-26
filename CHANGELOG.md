@@ -1,5 +1,29 @@
 <pre>
 
+Version 0.7.0 - 26/06/2017
+==========================
+
+Added
+-----
+> org.japo.java.entities.Modelo.java
+> org.japo.java.lib.UtilesFecha.java
+> org.japo.java.lib.UtilesModelo.java
+> org.japo.java.lib.UtilesValidacion.java
+> datos.csv
+
+Updated
+-------
+> README.md
+> CHANGELOG.md
+> org.japo.java.forms.Gui.java
+> app.properties
+
+Deleted
+-------
+> org.japo.java.entities.Capacity.java
+> org.japo.java.interfaces.ICapacity.java
+---
+
 Version 0.6.4 - 08/06/2017
 ==========================
 
