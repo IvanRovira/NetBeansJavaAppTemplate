@@ -17,7 +17,7 @@ package org.japo.java.events;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
-import org.japo.java.forms.GUI;
+import org.japo.java.controllers.Controller;
 
 /**
  *
@@ -25,22 +25,21 @@ import org.japo.java.forms.GUI;
  */
 public class MMEM implements MouseMotionListener {
 
-    // Referencia al Interfaz
-    private final GUI gui;
+    // Referencia al Controller
+    private final Controller control;
 
     // Constructor
-    public MMEM(GUI gui) {
-        this.gui = gui;
+    public MMEM(Controller control) {
+        this.control = control;
     }
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        // gui.procesarArrastreRaton(e);
+        // control.procesarArrastreRaton(e);
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        // gui.procesarMovimientoRaton(e);
+        // control.procesarMovimientoRaton(e);
     }
-
 }

@@ -15,13 +15,16 @@
  */
 package org.japo.java.interfaces;
 
+import org.japo.java.entities.Model;
+
 /**
  *
  * @author José A. Pacheco Ondoño - joanpaon@gmail.com
  *
- * Ejemplo de interfaz
  */
-public interface ICapacity {
+public interface IDAController {
 
-    boolean validarNumero();
+    public void importarModelo(Model model, String fichero) throws Exception;
+
+    public void exportarModelo(Model model, String fichero) throws Exception;
 }

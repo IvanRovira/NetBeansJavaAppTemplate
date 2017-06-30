@@ -102,5 +102,4 @@ public class UtilesValidacion {
         // Resultado de la validación
         return validacionOK;
     }
-
 }

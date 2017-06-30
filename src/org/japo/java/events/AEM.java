@@ -17,7 +17,7 @@ package org.japo.java.events;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import org.japo.java.forms.GUI;
+import org.japo.java.controllers.Controller;
 
 /**
  *
@@ -25,12 +25,12 @@ import org.japo.java.forms.GUI;
  */
 public class AEM implements ActionListener {
 
-    // Referencia al Interfaz
-    private final GUI gui;
+    // Referencia al Controller
+    private final Controller control;
 
     // Constructor
-    public AEM(GUI gui) {
-        this.gui = gui;
+    public AEM(Controller control) {
+        this.control = control;
     }
 
     @Override

@@ -3,8 +3,8 @@
 Project .....: NetBeansJavaAppTemplate
 Summary .....: Template for Java Application Projects on NetBeans IDE
 Creation ....: 17/04/2017
-Modification : 26/06/2017
-Version .....: 0.7.0
+Modification : 30/06/2017
+Version .....: 0.7.1
 Author ......: José A. Pacheco Ondoño - joanpaon@gmail.com
 Platform ....: Java 8
 IDE .........: NetBeans 8.2

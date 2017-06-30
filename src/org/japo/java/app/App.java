@@ -16,7 +16,7 @@
 package org.japo.java.app;
 
 import java.awt.EventQueue;
-import org.japo.java.forms.GUI;
+import org.japo.java.forms.View;
 
 /**
  *
@@ -38,7 +38,7 @@ public class App {
             @Override
             public void run() {
                 // Instancia la ventana
-                GUI gui = new GUI();
+                View gui = new View();
 
                 // Muestra la ventana
                 gui.setVisible(true);

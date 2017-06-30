@@ -16,7 +16,7 @@
 package org.japo.java.events;
 
 import java.awt.event.MouseAdapter;
-import org.japo.java.forms.GUI;
+import org.japo.java.controllers.Controller;
 
 /**
  *
@@ -24,12 +24,11 @@ import org.japo.java.forms.GUI;
  */
 public class MEM extends MouseAdapter {
 
-    // Referencia al Interfaz
-    private final GUI gui;
+    // Referencia al Controller
+    private final Controller control;
 
     // Constructor
-    public MEM(GUI gui) {
-        this.gui = gui;
+    public MEM(Controller control) {
+        this.control = control;
     }
-
 }

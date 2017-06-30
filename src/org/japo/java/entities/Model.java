@@ -23,7 +23,7 @@ import org.japo.java.lib.UtilesValidacion;
  *
  * @author José A. Pacheco Ondoño - joanpaon@gmail.com
  */
-public class Modelo implements Serializable {
+public class Model implements Serializable {
 
     // Número de items
     public static final int NUM_ITEMS = 5;
@@ -57,7 +57,7 @@ public class Modelo implements Serializable {
     private String item5;
 
     // Constructor Predeterminado
-    public Modelo() {
+    public Model() {
         item1 = DEF_ITEM1;
         item2 = DEF_ITEM2;
         item3 = DEF_ITEM3;
@@ -66,9 +66,9 @@ public class Modelo implements Serializable {
     }
 
     // Constructor Parametrizado
-    public Modelo(String item1, String item2,
-                  String item3, String item4,
-                  String item5) {
+    public Model(String item1, String item2,
+                 String item3, String item4,
+                 String item5) {
         // Item 1
         if (UtilesValidacion.validarDato(item1, ER_ITEM1)) {
             this.item1 = item1;
@@ -158,29 +158,4 @@ public class Modelo implements Serializable {
     }
 
     // --- FIN SETTERS / GETTERS
-    //
-    // Items > Modelo
-    public void asignarItemsModelo(String[] items) throws Exception {
-        setItem1(items[POS_ITEM1]);
-        setItem2(items[POS_ITEM2]);
-        setItem3(items[POS_ITEM3]);
-        setItem4(items[POS_ITEM4]);
-        setItem5(items[POS_ITEM5]);
-    }
-
-    // Modelo > Items
-    public String[] asignarModeloItems() {
-        // Lista vacía
-        String[] items = new String[NUM_ITEMS];
-
-        // Items > Lista
-        items[POS_ITEM1] = getItem1();
-        items[POS_ITEM2] = getItem2();
-        items[POS_ITEM3] = getItem3();
-        items[POS_ITEM4] = getItem4();
-        items[POS_ITEM5] = getItem5();
-
-        // Devuelve Lista
-        return items;
-    }
 }
