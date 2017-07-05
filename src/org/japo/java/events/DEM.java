@@ -16,16 +16,16 @@ public class DEM implements DocumentListener {
 
     @Override
     public void insertUpdate(DocumentEvent e) {
-        control.procesarCambioTexto(e);
+//        control.procesarCambioTexto(e);
     }
 
     @Override
     public void removeUpdate(DocumentEvent e) {
-        control.procesarCambioTexto(e);
+//        control.procesarCambioTexto(e);
     }
 
     @Override
     public void changedUpdate(DocumentEvent e) {
-        control.procesarCambioTexto(e);
+//        control.procesarCambioTexto(e);
     }
 }

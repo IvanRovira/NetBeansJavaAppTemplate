@@ -19,15 +19,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.WindowEvent;
 import java.util.Properties;
 import javax.swing.JOptionPane;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.DocumentEvent;
 import org.japo.java.entities.Model;
 import org.japo.java.forms.View;
 import org.japo.java.lib.UtilesApp;
 import org.japo.java.lib.UtilesSwing;
 import org.japo.java.interfaces.IDAController;
-import org.japo.java.lib.UtilesFecha;
-import org.japo.java.lib.UtilesValidacion;
 
 /**
  *
@@ -95,53 +91,12 @@ public class Controller {
 
     // Interfaz (Subjetivo) > Modelo
     public void sincronizarVistaModelo(Model model, View view) {
-        // Item 1
-        if (UtilesValidacion.validarDato(
-            view.txfItem1.getText(), Model.ER_ITEM1)) {
-            model.setItem1(view.txfItem1.getText());
-        } else {
-            model.setItem1(Model.DEF_ITEM1);
-        }
 
-        // Item 2
-        if (UtilesValidacion.validarDato(
-            view.txfItem2.getText(), Model.ER_ITEM2)) {
-            model.setItem2(view.txfItem2.getText());
-        } else {
-            model.setItem2(Model.DEF_ITEM2);
-        }
-
-        // Item 3
-        if (UtilesValidacion.validarDato(
-            (String) view.cbbItem3.getSelectedItem(), Model.ER_ITEM3)) {
-            model.setItem3((String) view.cbbItem3.getSelectedItem());
-        } else {
-            model.setItem3(Model.DEF_ITEM3);
-        }
-
-        // Item 4
-        if (UtilesFecha.validarFecha(view.txfItem4.getText())) {
-            model.setItem4(view.txfItem4.getText());
-        } else {
-            model.setItem4(Model.DEF_ITEM4);
-        }
-
-        // Item 5
-        if (UtilesValidacion.validarDato(
-            view.txfItem5.getText(), Model.ER_ITEM5)) {
-            model.setItem5(view.txfItem5.getText());
-        } else {
-            model.setItem5(Model.DEF_ITEM5);
-        }
     }
 
     // Modelo > Interfaz 
     public void sincronizarModeloVista(Model model, View view) {
-        view.txfItem1.setText(model.getItem1());
-        view.txfItem2.setText(model.getItem2());
-        view.cbbItem3.setSelectedItem(model.getItem3());
-        view.txfItem4.setText(model.getItem4());
-        view.txfItem5.setText(model.getItem5());
+
     }
 
     // Iniciado Cierre Ventana
@@ -201,85 +156,5 @@ public class Controller {
             // Mensaje - Validación Pendiente
             JOptionPane.showMessageDialog(view, "Hay datos erróneos.");
         }
-    }
-
-    // Procesar cambio de Texto
-    public void procesarCambioTexto(DocumentEvent e) {
-//        // Campo de Texto > Modelo
-//        model.setTexto(view.txfTexto.getText());
-//
-//        // Campo de Texto > Etiqueta
-//        view.lblRotulo.setText(view.txfTexto.getText());
-    }
-
-    // Cambiar Familia Tipográfica
-    public void procesarCambioTipografia(ActionEvent evt) {
-//        // Vista > Modelo
-//        model.setFamilia((String) view.cbbFamilia.getSelectedItem());
-//
-//        // Modelo > Vista
-//        sincronizarModeloVista(model, view);
-    }
-
-    // Activar/Desactivar Estilo Negrita
-    public void procesarNegrita(ActionEvent evt) {
-//        // Vista > Modelo
-//        model.setNegrita(view.cbxNegrita.isSelected());
-//        
-//        // Modelo > Vista
-//        sincronizarModeloVista(model, view);
-    }
-
-    // Activar/Desactivar Estilo Cursiva
-    public void procesarCursiva(ActionEvent evt) {
-//        // Vista > Modelo
-//        model.setCursiva(view.cbxCursiva.isSelected());
-//        
-//        // Modelo > Vista
-//        sincronizarModeloVista(model, view);
-    }
-
-    // Cambiar Tamaño de Fuente
-    public void procesarTalla(ChangeEvent evt) {
-//        // Vista > Modelo
-//        if (evt.getSource().equals(view.sldTalla)) {
-//            model.setTalla(view.sldTalla.getValue());
-//        } else {
-//            model.setTalla((int) view.spnTalla.getValue());
-//        }
-//
-//        // Modelo > Vista
-//        sincronizarModeloVista(model, view);
-    }
-
-    // Cambiar Componente Color
-    public void procesarAjusteColor(ChangeEvent evt) {
-//        // Vista > Modelo
-//        if (view.rbtFrente.isSelected()) {
-//            if (evt.getSource().equals(view.sldRojo)) {
-//                model.setFrenteR(view.sldRojo.getValue());
-//            } else if (evt.getSource().equals(view.sldVerde)) {
-//                model.setFrenteV(view.sldVerde.getValue());
-//            } else {
-//                model.setFrenteA(view.sldAzul.getValue());
-//            }
-//        } else {
-//            if (evt.getSource().equals(view.sldRojo)) {
-//                model.setFondoR(view.sldRojo.getValue());
-//            } else if (evt.getSource().equals(view.sldVerde)) {
-//                model.setFondoV(view.sldVerde.getValue());
-//            } else {
-//                model.setFondoA(view.sldAzul.getValue());
-//            }
-//        }
-//
-//        // Modelo > Vista
-//        sincronizarModeloVista(model, view);
-    }
-
-    // Cambiar Frente/Fondo
-    public void procesarCambioFrenteFondo(ActionEvent evt) {
-//        // Modelo > Vista
-//        sincronizarModeloVista(model, view);
     }
 }

@@ -15,12 +15,10 @@
  */
 package org.japo.java.forms;
 
-import java.awt.Color;
 import java.net.URL;
 import javax.swing.ImageIcon;
 import org.japo.java.controllers.Controller;
 import org.japo.java.entities.Model;
-import org.japo.java.lib.UtilesValidacion;
 
 /**
  *
@@ -83,11 +81,6 @@ public class View extends javax.swing.JFrame {
     private void initComponents() {
 
         pnlDatos = new javax.swing.JPanel();
-        txfItem1 = new javax.swing.JTextField();
-        txfItem2 = new javax.swing.JTextField();
-        cbbItem3 = new javax.swing.JComboBox<>();
-        txfItem4 = new javax.swing.JTextField();
-        txfItem5 = new javax.swing.JTextField();
         pnlControles = new javax.swing.JPanel();
         btnCargar = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
@@ -101,127 +94,20 @@ public class View extends javax.swing.JFrame {
             }
         });
 
-        pnlDatos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 18))); // NOI18N
-
-        txfItem1.setFont(new java.awt.Font("DialogInput", 1, 48)); // NOI18N
-        txfItem1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txfItem1.setText("88888");
-        txfItem1.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txfItem1FocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txfItem1FocusLost(evt);
-            }
-        });
-        txfItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txfItem1ActionPerformed(evt);
-            }
-        });
-
-        txfItem2.setFont(new java.awt.Font("DialogInput", 1, 48)); // NOI18N
-        txfItem2.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txfItem2.setText("888");
-        txfItem2.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txfItem2FocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txfItem2FocusLost(evt);
-            }
-        });
-        txfItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txfItem2ActionPerformed(evt);
-            }
-        });
-
-        cbbItem3.setFont(new java.awt.Font("DialogInput", 1, 48)); // NOI18N
-        cbbItem3.setMaximumRowCount(4);
-        cbbItem3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }));
-        cbbItem3.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                cbbItem3FocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                cbbItem3FocusLost(evt);
-            }
-        });
-        cbbItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbbItem3ActionPerformed(evt);
-            }
-        });
-
-        txfItem4.setFont(new java.awt.Font("DialogInput", 1, 48)); // NOI18N
-        txfItem4.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txfItem4.setText("88/88/8888");
-        txfItem4.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txfItem4FocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txfItem4FocusLost(evt);
-            }
-        });
-        txfItem4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txfItem4ActionPerformed(evt);
-            }
-        });
-
-        txfItem5.setFont(new java.awt.Font("DialogInput", 1, 48)); // NOI18N
-        txfItem5.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txfItem5.setText("88");
-        txfItem5.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txfItem5FocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txfItem5FocusLost(evt);
-            }
-        });
-        txfItem5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txfItem5ActionPerformed(evt);
-            }
-        });
+        pnlDatos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Controles IGU", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 18))); // NOI18N
 
         javax.swing.GroupLayout pnlDatosLayout = new javax.swing.GroupLayout(pnlDatos);
         pnlDatos.setLayout(pnlDatosLayout);
         pnlDatosLayout.setHorizontalGroup(
             pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlDatosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txfItem1, javax.swing.GroupLayout.PREFERRED_SIZE, 626, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txfItem2, javax.swing.GroupLayout.PREFERRED_SIZE, 626, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(cbbItem3, javax.swing.GroupLayout.PREFERRED_SIZE, 626, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txfItem4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 626, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txfItem5, javax.swing.GroupLayout.PREFERRED_SIZE, 626, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 638, Short.MAX_VALUE)
         );
         pnlDatosLayout.setVerticalGroup(
             pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlDatosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txfItem1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txfItem2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(cbbItem3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txfItem4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txfItem5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 448, Short.MAX_VALUE)
         );
 
-        pnlDatosLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {cbbItem3, txfItem1});
-
-        pnlControles.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Controles", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 18))); // NOI18N
+        pnlControles.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Acceso a Datos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 18))); // NOI18N
 
         btnCargar.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         btnCargar.setText("Cargar");
@@ -289,94 +175,19 @@ public class View extends javax.swing.JFrame {
         control.procesarCierreVentana(evt);
     }//GEN-LAST:event_formWindowClosing
 
-    private void txfItem1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txfItem1FocusGained
-        txfItem1.setForeground(Color.BLACK);
-        txfItem1.setBackground(Color.CYAN);
-    }//GEN-LAST:event_txfItem1FocusGained
-
-    private void txfItem2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txfItem2FocusGained
-        txfItem2.setForeground(Color.BLACK);
-        txfItem2.setBackground(Color.CYAN);
-    }//GEN-LAST:event_txfItem2FocusGained
-
-    private void cbbItem3FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cbbItem3FocusGained
-        cbbItem3.setBackground(Color.CYAN);
-    }//GEN-LAST:event_cbbItem3FocusGained
-
-    private void txfItem4FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txfItem4FocusGained
-        txfItem4.setForeground(Color.BLACK);
-        txfItem4.setBackground(Color.CYAN);
-    }//GEN-LAST:event_txfItem4FocusGained
-
-    private void txfItem5FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txfItem5FocusGained
-        txfItem5.setForeground(Color.BLACK);
-        txfItem5.setBackground(Color.CYAN);
-    }//GEN-LAST:event_txfItem5FocusGained
-
-    private void txfItem1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txfItem1FocusLost
-        txfItem1.setBackground(Color.WHITE);
-        UtilesValidacion.validarCampoTexto(txfItem1, Model.ER_ITEM1, "*");
-    }//GEN-LAST:event_txfItem1FocusLost
-
-    private void txfItem2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txfItem2FocusLost
-        txfItem2.setBackground(Color.WHITE);
-        UtilesValidacion.validarCampoTexto(txfItem2, Model.ER_ITEM2, "*");
-    }//GEN-LAST:event_txfItem2FocusLost
-
-    private void cbbItem3FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cbbItem3FocusLost
-        cbbItem3.setBackground(Color.WHITE);
-    }//GEN-LAST:event_cbbItem3FocusLost
-
-    private void txfItem4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txfItem4FocusLost
-        txfItem4.setBackground(Color.WHITE);
-        UtilesValidacion.validarCampoFecha(txfItem4, "*");
-    }//GEN-LAST:event_txfItem4FocusLost
-
-    private void txfItem5FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txfItem5FocusLost
-        txfItem5.setBackground(Color.WHITE);
-        UtilesValidacion.validarCampoTexto(txfItem5, Model.ER_ITEM5, "*");
-    }//GEN-LAST:event_txfItem5FocusLost
-
-    private void txfItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfItem1ActionPerformed
-        txfItem2.requestFocus();
-    }//GEN-LAST:event_txfItem1ActionPerformed
-
-    private void txfItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfItem2ActionPerformed
-        cbbItem3.requestFocus();
-    }//GEN-LAST:event_txfItem2ActionPerformed
-
-    private void cbbItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbItem3ActionPerformed
-        txfItem4.requestFocus();
-    }//GEN-LAST:event_cbbItem3ActionPerformed
-
-    private void txfItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfItem4ActionPerformed
-        txfItem5.requestFocus();
-    }//GEN-LAST:event_txfItem4ActionPerformed
-
-    private void txfItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfItem5ActionPerformed
-//        txfNumero.requestFocus();
-    }//GEN-LAST:event_txfItem5ActionPerformed
-
     private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
         control.procesarImportacion(evt);
-        txfItem1.requestFocus();
     }//GEN-LAST:event_btnCargarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         control.procesarExportacion(evt);
-        txfItem1.requestFocus();
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCargar;
     private javax.swing.JButton btnGuardar;
-    public javax.swing.JComboBox<String> cbbItem3;
     private javax.swing.JPanel pnlControles;
     private javax.swing.JPanel pnlDatos;
-    public javax.swing.JTextField txfItem1;
-    public javax.swing.JTextField txfItem2;
-    public javax.swing.JTextField txfItem4;
-    public javax.swing.JTextField txfItem5;
     // End of variables declaration//GEN-END:variables
 
     public Model getModel() {

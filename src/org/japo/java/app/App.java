@@ -38,10 +38,10 @@ public class App {
             @Override
             public void run() {
                 // Instancia la ventana
-                View gui = new View();
+                View view = new View();
 
                 // Muestra la ventana
-                gui.setVisible(true);
+                view.setVisible(true);
             }
         });
     }
