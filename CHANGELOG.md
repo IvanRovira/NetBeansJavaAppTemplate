@@ -1,5 +1,10 @@
 <pre>
 
+Version 0.7.3 - 07/07/2017
+==========================
+Some refactorizations
+---
+
 Version 0.7.2 - 05/07/2017
 ==========================
 Some refactorizations, improvements and fixed bugs

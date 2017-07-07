@@ -16,7 +16,7 @@
 package org.japo.java.app;
 
 import java.awt.EventQueue;
-import org.japo.java.forms.View;
+import org.japo.java.view.View;
 
 /**
  *
