@@ -11,7 +11,7 @@ Remote ......: https://github.com/joanpaon/NetBeansJavaAppTemplate.git
 
 ---
 
-Please, clone the right branch according your Application type. 
+Please, clone the right branch according with your Application type. 
 
 Available currently:
 
