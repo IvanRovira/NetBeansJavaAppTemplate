@@ -15,7 +15,8 @@
  */
 package org.japo.java.main;
 
-import org.japo.java.app.App;
+import java.awt.EventQueue;
+import org.japo.java.views.View;
 
 /**
  *
@@ -27,11 +28,16 @@ public class Main {
 
     // Punto de entrada a la aplicación
     public static void main(String[] args) {
-        // Crear aplicación
-        App app = new App();
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                // Instancia la ventana
+                View view = new View();
 
-        // Lanzar aplicación
-        app.launchApp();
+                // Muestra la ventana
+                view.setVisible(true);
+            }
+        });
     }
 
 }

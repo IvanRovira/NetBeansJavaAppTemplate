@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.japo.java.lib;
+package org.japo.java.libs;
 
 import java.awt.GraphicsEnvironment;
 import java.awt.HeadlessException;
@@ -27,6 +27,7 @@ import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.net.URL;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
@@ -73,7 +74,7 @@ public class UtilesSwing {
         try {
             UIManager.setLookAndFeel(lnf);
         } catch (ClassNotFoundException | IllegalAccessException
-            | InstantiationException | UnsupportedLookAndFeelException e) {
+                | InstantiationException | UnsupportedLookAndFeelException e) {
             System.out.println(e.getLocalizedMessage());
         }
     }
@@ -82,9 +83,9 @@ public class UtilesSwing {
     public static void asignarImagenEscalada(JLabel lblImagen, Image imgOriginal) {
         // Obtiene la imagen escalada
         Image imgEscalada = imgOriginal.getScaledInstance(
-              lblImagen.getSize().width,
-              lblImagen.getSize().height,
-              Image.SCALE_FAST);
+                lblImagen.getSize().width,
+                lblImagen.getSize().height,
+                Image.SCALE_FAST);
 
         // Image (Final) > Icon
         Icon i = new ImageIcon(imgEscalada);
@@ -169,8 +170,8 @@ public class UtilesSwing {
     // Tipografias disponibles en el sistema
     public static String[] obtenerTipografiasSistema() {
         return GraphicsEnvironment.
-            getLocalGraphicsEnvironment().
-            getAvailableFontFamilyNames();
+                getLocalGraphicsEnvironment().
+                getAvailableFontFamilyNames();
     }
 
     public static void seleccionarElementoCombo(JComboBox<String> cbbActual, String item) {
@@ -189,5 +190,14 @@ public class UtilesSwing {
         for (ActionListener al : lista) {
             cbbActual.addActionListener(al);
         }
+    }
+    
+    // Icono > JFrame
+    public static void establecerIconoVentana(JFrame view, String rutaIcono) {
+        // Ruta Icono > URL Icono
+        URL url = ClassLoader.getSystemResource(rutaIcono);
+
+        // Aplica Icono
+        view.setIconImage(new ImageIcon(url).getImage());
     }
 }

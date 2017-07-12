@@ -19,7 +19,7 @@ import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import org.japo.java.entities.Model;
+import org.japo.java.models.Model;
 import org.japo.java.interfaces.IDAController;
 
 /**

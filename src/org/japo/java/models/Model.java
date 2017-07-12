@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.japo.java.entities;
+package org.japo.java.models;
 
 import java.io.Serializable;
-import org.japo.java.lib.UtilesFecha;
-import org.japo.java.lib.UtilesValidacion;
+import org.japo.java.libs.UtilesFecha;
+import org.japo.java.libs.UtilesValidacion;
 
 /**
  *

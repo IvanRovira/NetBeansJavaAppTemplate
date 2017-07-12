@@ -15,7 +15,7 @@
  */
 package org.japo.java.interfaces;
 
-import org.japo.java.entities.Model;
+import org.japo.java.models.Model;
 
 /**
  *

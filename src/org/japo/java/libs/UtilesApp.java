@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.japo.java.lib;
+package org.japo.java.libs;
 
 import java.io.FileReader;
 import java.io.FileWriter;

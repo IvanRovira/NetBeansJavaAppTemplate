@@ -13,12 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.japo.java.view;
+package org.japo.java.views;
 
 import java.net.URL;
+import java.util.Properties;
 import javax.swing.ImageIcon;
 import org.japo.java.controllers.Controller;
-import org.japo.java.entities.Model;
+import org.japo.java.libs.UtilesApp;
+import org.japo.java.models.Model;
 
 /**
  *
@@ -26,49 +28,21 @@ import org.japo.java.entities.Model;
  */
 public class View extends javax.swing.JFrame {
 
-    // Referencias 
-    private Model model;
+    // Referencias
     private Controller control;
+    private Model model;
+    private Properties prpView;
 
     // Constructor
     public View() {
         // Inicializar GUI - PREVIA
-        beforeInit();
+        initBefore();
 
         // Construcción - GUI
         initComponents();
 
         // Inicializar GUI - POSTERIOR
-        afterInit();
-    }
-
-    // Inicializar GUI - PREVIA
-    private void beforeInit() {
-        // Generar Modelo
-        model = new Model();
-
-        // Generar Controlador
-        control = new Controller(model, this);
-
-        // Restaurar Estado Previo
-        control.restaurarEstadoApp();
-
-        // Otras inicializaciones
-    }
-
-    // Inicializar GUI - POSTERIOR
-    private void afterInit() {
-        // Icono Ventana - Recurso
-        URL urlICN = ClassLoader.getSystemResource("img/favicon.png");
-        setIconImage(new ImageIcon(urlICN).getImage());
-
-        // Modelo > Vista
-        control.sincronizarModeloVista(model, this);
-
-        // Enfocar Control Inicial
-        btnCargar.requestFocus();
-
-        // Otras inicializaciones
+        initAfter();
     }
 
     /**
@@ -189,6 +163,34 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JPanel pnlControles;
     private javax.swing.JPanel pnlDatos;
     // End of variables declaration//GEN-END:variables
+
+    // Inicializar GUI - PREVIA
+    private void initBefore() {
+        // Crear Modelo
+        model = new Model();
+
+        // Crear Controlador
+        control = new Controller(model, this);
+
+        // Propiedades Vista
+        prpView = UtilesApp.cargarPropiedades("view.properties");
+        
+        // Restaurar Estado
+        control.restaurarEstadoVista(this, prpView);
+
+        // Otras inicializaciones
+    }
+
+    // Inicializar GUI - POSTERIOR
+    private void initAfter() {
+        // Modelo > Vista
+        control.sincronizarModeloVista(model, this);
+
+        // Enfocar Control Inicial
+        btnCargar.requestFocus();
+
+        // Otras inicializaciones
+    }
 
     public Model getModel() {
         return model;

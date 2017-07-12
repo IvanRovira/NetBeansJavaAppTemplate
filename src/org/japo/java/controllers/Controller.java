@@ -19,10 +19,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.WindowEvent;
 import java.util.Properties;
 import javax.swing.JOptionPane;
-import org.japo.java.entities.Model;
-import org.japo.java.view.View;
-import org.japo.java.lib.UtilesApp;
-import org.japo.java.lib.UtilesSwing;
+import org.japo.java.models.Model;
+import org.japo.java.views.View;
+import org.japo.java.libs.UtilesApp;
+import org.japo.java.libs.UtilesSwing;
 import org.japo.java.interfaces.IDAController;
 
 /**
@@ -44,7 +44,7 @@ public class Controller {
         this.view = view;
 
         // Propiedades App
-        this.prpApp = UtilesApp.cargarPropiedades();
+        this.prpApp = UtilesApp.cargarPropiedades("app.properties");
 
         // Controlador de Modelo
         this.modelControl = new ModelController();
@@ -94,7 +94,7 @@ public class Controller {
 
     }
 
-    // Modelo > Interfaz 
+    // Modelo > Vista 
     public void sincronizarModeloVista(Model model, View view) {
 
     }
@@ -156,5 +156,13 @@ public class Controller {
             // Mensaje - Validación Pendiente
             JOptionPane.showMessageDialog(view, "Hay datos erróneos.");
         }
+    }
+
+    // Propiedades Vista > Estado Vista
+    public void restaurarEstadoVista(View view, Properties prp) {
+        // Icono Ventana
+        UtilesSwing.establecerIconoVentana(view, prp.getProperty("ruta_favicon"));
+
+        // Otras Propiedades
     }
 }

@@ -16,8 +16,8 @@
 package org.japo.java.controllers;
 
 import java.util.Properties;
-import org.japo.java.entities.Model;
-import org.japo.java.lib.UtilesApp;
+import org.japo.java.models.Model;
+import org.japo.java.libs.UtilesApp;
 import org.japo.java.interfaces.IDAController;
 
 /**

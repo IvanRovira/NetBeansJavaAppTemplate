@@ -16,8 +16,8 @@
 package org.japo.java.controllers;
 
 import java.util.Properties;
-import org.japo.java.entities.Model;
-import org.japo.java.view.View;
+import org.japo.java.models.Model;
+import org.japo.java.views.View;
 
 /**
  *
