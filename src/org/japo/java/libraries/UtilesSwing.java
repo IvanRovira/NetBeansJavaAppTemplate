@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.japo.java.libs;
+package org.japo.java.libraries;
 
 import java.awt.GraphicsEnvironment;
 import java.awt.HeadlessException;
@@ -192,12 +192,12 @@ public class UtilesSwing {
         }
     }
     
-    // Icono > JFrame
-    public static void establecerIconoVentana(JFrame view, String rutaIcono) {
-        // Ruta Icono > URL Icono
-        URL url = ClassLoader.getSystemResource(rutaIcono);
-
-        // Aplica Icono
+    // Asignar Favicon Ventana
+    public static void establecerFavicon(JFrame view, String rutaFavicon) {
+        // Ruta Imagen > URL Imagen
+        URL url = ClassLoader.getSystemResource(rutaFavicon);
+        
+        // Asignar Favicon
         view.setIconImage(new ImageIcon(url).getImage());
     }
 }

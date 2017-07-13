@@ -15,11 +15,9 @@
  */
 package org.japo.java.views;
 
-import java.net.URL;
 import java.util.Properties;
-import javax.swing.ImageIcon;
 import org.japo.java.controllers.Controller;
-import org.japo.java.libs.UtilesApp;
+import org.japo.java.libraries.UtilesApp;
 import org.japo.java.models.Model;
 
 /**
@@ -43,6 +41,14 @@ public class View extends javax.swing.JFrame {
 
         // Inicializar GUI - POSTERIOR
         initAfter();
+    }
+
+    public Model getModel() {
+        return model;
+    }
+
+    public void setModel(Model model) {
+        this.model = model;
     }
 
     /**
@@ -174,7 +180,7 @@ public class View extends javax.swing.JFrame {
 
         // Propiedades Vista
         prpView = UtilesApp.cargarPropiedades("view.properties");
-        
+
         // Restaurar Estado
         control.restaurarEstadoVista(this, prpView);
 
@@ -190,13 +196,5 @@ public class View extends javax.swing.JFrame {
         btnCargar.requestFocus();
 
         // Otras inicializaciones
-    }
-
-    public Model getModel() {
-        return model;
-    }
-
-    public void setModel(Model model) {
-        this.model = model;
     }
 }

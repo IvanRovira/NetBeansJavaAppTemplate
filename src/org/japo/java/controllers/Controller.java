@@ -21,8 +21,8 @@ import java.util.Properties;
 import javax.swing.JOptionPane;
 import org.japo.java.models.Model;
 import org.japo.java.views.View;
-import org.japo.java.libs.UtilesApp;
-import org.japo.java.libs.UtilesSwing;
+import org.japo.java.libraries.UtilesApp;
+import org.japo.java.libraries.UtilesSwing;
 import org.japo.java.interfaces.IDAController;
 
 /**
@@ -76,20 +76,23 @@ public class Controller {
 
     // --- FIN SETTERS / GETTERS ----
     //
-    // Persistencia > Estado Actual
-    public void restaurarEstadoApp() {
+    // Propiedades Vista > Estado Vista
+    public void restaurarEstadoVista(View view, Properties prp) {
+        // Icono Ventana
+        UtilesSwing.establecerFavicon(view, prp.getProperty("ruta_favicon"));
+
         // Establece Lnf
-        UtilesSwing.establecerLnF(prpApp.getProperty("lnf", UtilesSwing.WINDOWS));
+        UtilesSwing.establecerLnF(prp.getProperty("lnf", UtilesSwing.WINDOWS));
 
         // Activa Singleton
-        if (!UtilesApp.activarInstancia(prpApp.getProperty("puerto_bloqueo", UtilesApp.PUERTO_BLOQUEO))) {
+        if (!UtilesApp.activarInstancia(prp.getProperty("puerto_bloqueo", UtilesApp.PUERTO_BLOQUEO))) {
             UtilesSwing.terminarPrograma(view);
         }
 
         // Activa otras propiedades
     }
 
-    // Interfaz (Subjetivo) > Modelo
+    // Vista (Subjetivo) > Modelo
     public void sincronizarVistaModelo(Model model, View view) {
 
     }
@@ -156,13 +159,5 @@ public class Controller {
             // Mensaje - Validación Pendiente
             JOptionPane.showMessageDialog(view, "Hay datos erróneos.");
         }
-    }
-
-    // Propiedades Vista > Estado Vista
-    public void restaurarEstadoVista(View view, Properties prp) {
-        // Icono Ventana
-        UtilesSwing.establecerIconoVentana(view, prp.getProperty("ruta_favicon"));
-
-        // Otras Propiedades
     }
 }

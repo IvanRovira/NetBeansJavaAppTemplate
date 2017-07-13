@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.japo.java.libs;
+package org.japo.java.libraries;
 
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -38,53 +38,42 @@ public class UtilesApp {
         return cargarPropiedades(FICHERO_PRP_APP);
     }
 
-    // Fichero > Propiedades
-    public static Properties cargarPropiedades(String fichero) {
+    // Cargar Fichero Propiedades
+    public static Properties cargarPropiedades(String rutaFichero) {
         // Propiedades
-        Properties p;
-
-        // Proceso de carga
-        try (FileReader fr = new FileReader(fichero)) {
-            // Crear propiedades de la BD
-            p = new Properties();
-
-            // Cargar propiedades
-            p.load(fr);
+        Properties prp = new Properties();
+        
+        // Cargar Propiedades
+        try (FileReader fr = new FileReader(rutaFichero)){
+            prp.load(fr);
         } catch (Exception e) {
-            // Mensaje de error
-            System.out.println(e.getLocalizedMessage());
-
-            // No Propiedades
-            p = null;
+            System.out.println(e);
         }
-
-        // Devuelve las propiedades
-        return p;
+        
+        // Devolver las propiedades
+        return prp;
     }
 
     // Propiedades > Fichero (Por defecto)
-    public static boolean guardarPropiedades(Properties p) {
-        return guardarPropiedades(p, FICHERO_PRP_APP);
+    public static boolean guardarPropiedades(Properties prp) {
+        return guardarPropiedades(prp, FICHERO_PRP_APP);
     }
 
     // Propiedades > Fichero
-    public static boolean guardarPropiedades(Properties p, String fichero) {
+    public static boolean guardarPropiedades(Properties prp, String fichero) {
         // Semáforo Estado
-        boolean procesoOK;
+        boolean procesoOK = false;
 
         // Proceso de salvaguarda de propiedades
         try (FileWriter fw = new FileWriter(fichero)) {
             // Guarda las propiedades
-            p.store(fw, null);
+            prp.store(fw, null);
 
             // Proceso OK
             procesoOK = true;
         } catch (Exception e) {
             // Mensaje de error
-            System.out.println(e.getLocalizedMessage());
-
-            // Error
-            procesoOK = false;
+            System.out.println(e);
         }
 
         // Devuelve Estado
@@ -92,13 +81,13 @@ public class UtilesApp {
     }
 
     // Activa Instancia Única
-    public static boolean activarInstancia(Properties p) {
+    public static boolean activarInstancia(Properties prp) {
         // Semaforo Estado
-        boolean instanciaOK;
+        boolean instanciaOK = false;
 
         try {
             // Obtener dato
-            String dato = p.getProperty("puerto_bloqueo", PUERTO_BLOQUEO);
+            String dato = prp.getProperty("puerto_bloqueo", PUERTO_BLOQUEO);
 
             // Puerto de bloqueo
             int puerto = Integer.parseInt(dato);
@@ -109,11 +98,8 @@ public class UtilesApp {
             // Marca Semáforo
             instanciaOK = true;
         } catch (IOException | NumberFormatException e) {
-            // Marca Semáforo
-            instanciaOK = false;
-
             // Mensaje Informativo
-            System.out.println(e.getLocalizedMessage());
+            System.out.println(e);
         }
 
         // Devuelve Estado
@@ -121,13 +107,13 @@ public class UtilesApp {
     }
 
     // Activa Instancia Única
-    public static boolean activarInstancia(String dato) {
+    public static boolean activarInstancia(String txtPuerto) {
         // Semaforo Estado
-        boolean instanciaOK;
+        boolean instanciaOK = false;
 
         try {
             // Conversión numérica
-            int puerto = Integer.parseInt(dato);
+            int puerto = Integer.parseInt(txtPuerto);
 
             // Abre un ServerSocket al puerto de bloqueo
             ServerSocket ss = new ServerSocket(puerto);
@@ -135,11 +121,8 @@ public class UtilesApp {
             // Marca Semáforo
             instanciaOK = true;
         } catch (IOException | NumberFormatException e) {
-            // Marca Semáforo
-            instanciaOK = false;
-
             // Mensaje Informativo
-            System.out.println(e.getLocalizedMessage());
+            System.out.println(e);
         }
 
         // Devuelve Estado

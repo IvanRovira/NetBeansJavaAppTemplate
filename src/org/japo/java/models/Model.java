@@ -16,8 +16,8 @@
 package org.japo.java.models;
 
 import java.io.Serializable;
-import org.japo.java.libs.UtilesFecha;
-import org.japo.java.libs.UtilesValidacion;
+import org.japo.java.libraries.UtilesFecha;
+import org.japo.java.libraries.UtilesValidacion;
 
 /**
  *
