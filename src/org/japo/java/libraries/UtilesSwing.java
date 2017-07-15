@@ -193,11 +193,11 @@ public class UtilesSwing {
     }
     
     // Asignar Favicon Ventana
-    public static void establecerFavicon(JFrame view, String rutaFavicon) {
-        // Ruta Imagen > URL Imagen
-        URL url = ClassLoader.getSystemResource(rutaFavicon);
-        
-        // Asignar Favicon
-        view.setIconImage(new ImageIcon(url).getImage());
+    public static void establecerFavicon(JFrame ventana, String rutaFavicon) {
+        // Ruta Favicon > URL Favicon
+        URL urlICN = ClassLoader.getSystemResource(rutaFavicon);
+
+        // URL Favicon > Ventana Favicon
+        ventana.setIconImage(new ImageIcon(urlICN).getImage());
     }
 }

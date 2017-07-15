@@ -38,19 +38,19 @@ public class UtilesApp {
         return cargarPropiedades(FICHERO_PRP_APP);
     }
 
-    // Cargar Fichero Propiedades
+    // Fichero Propiedades > Objeto Propiedades
     public static Properties cargarPropiedades(String rutaFichero) {
-        // Propiedades
+        // Objeto de Propiedades Vacio
         Properties prp = new Properties();
-        
-        // Cargar Propiedades
-        try (FileReader fr = new FileReader(rutaFichero)){
+
+        // Cargar Fichero de Propiedades 
+        try (FileReader fr = new FileReader(rutaFichero)) {
             prp.load(fr);
         } catch (Exception e) {
             System.out.println(e);
         }
-        
-        // Devolver las propiedades
+
+        // Devolver Propiedades
         return prp;
     }
 

@@ -27,32 +27,32 @@ import javax.swing.JTextField;
  */
 public class UtilesValidacion {
 
-    // Dato + ExpReg
+    // Dato + Expresión Regular
     public static boolean validarDato(String dato, String expReg) {
         // Semáforo de validación
-        boolean testOK;
+        boolean testOK = false;
 
+        // Realizar Validación
         try {
-            // Patrón de la expresión regular
+            // Compilar Expresión Regular
             Pattern patron = Pattern.compile(expReg);
 
-            // Detector del texto de prueba
+            // Detector para Texto de Prueba
             Matcher detector = patron.matcher(dato);
 
-            // Coincidencia
+            // Averiguar Coincidencia
             testOK = detector.matches();
-        } catch (PatternSyntaxException pse) {
-            // ExpReg errónea - Depurar
-            testOK = false;
+        } catch (Exception e) {
+            System.out.println(e);
         }
 
-        // Resultado de la validación
+        // Devolver Semáforo
         return testOK;
     }
 
     // Campo de texto + FECHA + Texto campo vacío
     public static boolean validarCampoFecha(
-        JTextField txfActual, String textoCampoVacio) {
+            JTextField txfActual, String textoCampoVacio) {
         // Texto del campo - No espaciadores
         String textoActual = txfActual.getText().trim();
 
@@ -77,7 +77,7 @@ public class UtilesValidacion {
 
     // Campo de texto + ExpReg + Texto campo vacío
     public static boolean validarCampoTexto(
-        JTextField txfActual, String expReg, String textoCampoVacio) {
+            JTextField txfActual, String expReg, String textoCampoVacio) {
         // Texto del campo - No espaciadores
         String textoActual = txfActual.getText().trim();
 

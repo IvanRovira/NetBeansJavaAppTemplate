@@ -33,13 +33,14 @@ public class Controller {
 
     // Referencias
     private final View view;
-    private final Properties prpApp;
     private final Model model;
+    private final Properties prpApp;
     private final ModelController modelControl;
     private final IDAController daControl;
 
     // Constructor Parametrizado
     public Controller(Model model, View view) {
+        // Memorizar Referencias
         this.model = model;
         this.view = view;
 
