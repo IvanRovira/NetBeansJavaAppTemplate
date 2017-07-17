@@ -36,6 +36,6 @@ public class WEM extends WindowAdapter {
     // Cierre Iniciado
     @Override
     public void windowClosing(WindowEvent e) {
-        control.procesarCierreVentana(e);
+        control.procesarCierreVista(e);
     }
 }

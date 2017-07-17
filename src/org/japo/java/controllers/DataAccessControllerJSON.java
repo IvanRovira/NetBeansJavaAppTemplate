@@ -21,21 +21,19 @@ import com.google.gson.stream.JsonReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.Writer;
+import org.japo.java.interfaces.IDataAccessController;
 import org.japo.java.models.Model;
-import org.japo.java.interfaces.IDAController;
 
 /**
  *
  * @author José A. Pacheco Ondoño - joanpaon@gmail.com
  */
-public class DAControllerJSON implements IDAController {
-
+public class DataAccessControllerJSON implements IDataAccessController {
     // Referencias
-    private final ModelController modelControl;
+    private final Controller control;
 
-    // Constructor Parametrizado
-    public DAControllerJSON(ModelController modelControl) {
-        this.modelControl = modelControl;
+    public DataAccessControllerJSON(Controller control) {
+        this.control = control;
     }
 
     // Modelo > Fichero [JSON]
@@ -61,7 +59,7 @@ public class DAControllerJSON implements IDAController {
             Model modeloIni = gson.fromJson(entrada, Model.class);
 
             // Modelo Importado > Modelo
-            modelControl.copiarModelo(modeloIni, modeloFin);
+            control.convertirModeloModelo(modeloIni, modeloFin);
         }
     }
 }

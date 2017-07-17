@@ -23,7 +23,7 @@ import org.japo.java.models.Model;
 import org.japo.java.views.View;
 import org.japo.java.libraries.UtilesApp;
 import org.japo.java.libraries.UtilesSwing;
-import org.japo.java.interfaces.IDAController;
+import org.japo.java.interfaces.IDataAccessController;
 
 /**
  *
@@ -32,11 +32,10 @@ import org.japo.java.interfaces.IDAController;
 public class Controller {
 
     // Referencias
-    private final View view;
     private final Model model;
+    private final View view;
     private final Properties prpApp;
-    private final ModelController modelControl;
-    private final IDAController daControl;
+    private final IDataAccessController dac;
 
     // Constructor Parametrizado
     public Controller(Model model, View view) {
@@ -44,39 +43,81 @@ public class Controller {
         this.model = model;
         this.view = view;
 
-        // Propiedades App
-        this.prpApp = UtilesApp.cargarPropiedades("app.properties");
-
-        // Controlador de Modelo
-        this.modelControl = new ModelController();
+        // Cargar Propiedades Aplicación
+        prpApp = UtilesApp.cargarPropiedades("app.properties");
 
         // *** Controlador de Persistencia ***
-        this.daControl = new DAControllerJSON(modelControl);
+        this.dac = new DataAccessControllerJSON(this);
     }
 
-    // --- INICIO SETTERS / GETTERS ----
-    public View getView() {
-        return view;
+    // Persistencia > Modelo > Interfaz
+    public void procesarImportacion(ActionEvent evt) {
+        try {
+            // Fichero de Datos
+            String fichero = prpApp.getProperty("fichero_datos");
+
+            // Persistencia > Modelo
+            dac.importarModelo(model, fichero);
+
+            // Modelo > Interfaz
+            sincronizarModeloVista(model, view);
+
+            // Validar Datos Cargados > Interfaz
+            validarControlesSubjetivos(view);
+
+            // Mensaje - Importación OK
+            String msg = "Datos cargados correctamente";
+            JOptionPane.showMessageDialog(view, msg);
+        } catch (Exception e) {
+            // Mensaje - Importación NO
+            String msg = "Error al cargar los datos";
+            JOptionPane.showMessageDialog(view, msg);
+        }
     }
 
-    public Properties getPrpApp() {
-        return prpApp;
+    // Interfaz > Modelo > Persistencia
+    public void procesarExportacion(ActionEvent evt) {
+        // Validar Datos Interfaz
+        if (validarControlesSubjetivos(view)) {
+            try {
+                // Interfaz > Modelo
+                sincronizarVistaModelo(view, model);
+
+                // Fichero de Datos
+                String fichero = prpApp.getProperty("fichero_datos");
+
+                // Modelo > Persistencia
+                dac.exportarModelo(model, fichero);
+
+                // Mensaje - Exportación OK
+                String msg = "Datos guardados correctamente";
+                JOptionPane.showMessageDialog(view, msg);
+            } catch (Exception e) {
+                // Mensaje - Exportación NO
+                String msg = "Error al guardar los datos";
+                JOptionPane.showMessageDialog(view, msg);
+            }
+        } else {
+            // Mensaje - Validación Pendiente
+            JOptionPane.showMessageDialog(view, "Hay datos erróneos.");
+        }
     }
 
-    public Model getModel() {
-        return model;
+    // Modelo > Vista 
+    public void sincronizarModeloVista(Model model, View view) {
+
     }
 
-    public ModelController getModelControl() {
-        return modelControl;
+    // Interfaz (Subjetivo) > Modelo
+    private void sincronizarVistaModelo(View view, Model model) {
+
     }
 
-    public IDAController getDaControl() {
-        return daControl;
+    // Validar Controles Subjetivos
+    private boolean validarControlesSubjetivos(View view) {
+        return true;
     }
 
-    // --- FIN SETTERS / GETTERS ----
-    //
     // Propiedades Vista > Estado Vista
     public void restaurarEstadoVista(View view, Properties prp) {
         // Icono Ventana
@@ -93,72 +134,34 @@ public class Controller {
         // Activa otras propiedades
     }
 
-    // Vista (Subjetivo) > Modelo
-    public void sincronizarVistaModelo(Model model, View view) {
-
-    }
-
-    // Modelo > Vista 
-    public void sincronizarModeloVista(Model model, View view) {
-
-    }
-
-    // Iniciado Cierre Ventana
-    public void procesarCierreVentana(WindowEvent evt) {
+    // Gestión Cierre Vista
+    public void procesarCierreVista(WindowEvent evt) {
         // Memorizar Estado de la Applicación
-        modelControl.memorizarEstadoApp(prpApp);
+        memorizarEstadoVista(prpApp);
+
+        // Otras Acciones
     }
 
-    // Persistencia > Modelo > Interfaz
-    public void procesarImportacion(ActionEvent evt) {
-        try {
-            // Fichero de Datos
-            String fichero = prpApp.getProperty("fichero_datos");
-
-            // Persistencia > Modelo
-            daControl.importarModelo(model, fichero);
-
-            // Modelo > Interfaz
-            sincronizarModeloVista(model, view);
-
-            // Validar Datos Cargados > Interfaz
-            modelControl.comprobarValidez(view);
-
-            // Mensaje - Importación OK
-            String msg = "Datos cargados correctamente";
-            JOptionPane.showMessageDialog(view, msg);
-        } catch (Exception e) {
-            // Mensaje - Importación NO
-            String msg = "Error al cargar los datos";
-            JOptionPane.showMessageDialog(view, msg);
-        }
+    // Estado Actual > Persistencia
+    public void memorizarEstadoVista(Properties prpApp) {
+//        // Actualiza Propiedades Estado Actual
+//
+//        // Guardar Estado Actual
+//        UtilesApp.guardarPropiedades(prpApp);
     }
 
-    // Interfaz > Modelo > Persistencia
-    public void procesarExportacion(ActionEvent evt) {
-        // Validar Datos Interfaz
-        if (modelControl.comprobarValidez(view)) {
-            try {
-                // Interfaz > Modelo
-                sincronizarVistaModelo(model, view);
+    // Modelo > Modelo
+    public void convertirModeloModelo(Model modeloIni, Model modeloFin) {
 
-                // Fichero de Datos
-                String fichero = prpApp.getProperty("fichero_datos");
+    }
 
-                // Modelo > Persistencia
-                daControl.exportarModelo(model, fichero);
+    // Modelo > Propiedades
+    void convertirModeloPropiedades(Model model, Properties prp) {
 
-                // Mensaje - Exportación OK
-                String msg = "Datos guardados correctamente";
-                JOptionPane.showMessageDialog(view, msg);
-            } catch (Exception e) {
-                // Mensaje - Exportación NO
-                String msg = "Error al guardar los datos";
-                JOptionPane.showMessageDialog(view, msg);
-            }
-        } else {
-            // Mensaje - Validación Pendiente
-            JOptionPane.showMessageDialog(view, "Hay datos erróneos.");
-        }
+    }
+
+    // Propiedades > Modelo
+    void convertirPropiedadesModelo(Properties prp, Model model) {
+        
     }
 }

@@ -15,45 +15,44 @@
  */
 package org.japo.java.controllers;
 
-import java.beans.XMLDecoder;
-import java.beans.XMLEncoder;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import org.japo.java.interfaces.IDataAccessController;
 import org.japo.java.models.Model;
-import org.japo.java.interfaces.IDAController;
 
 /**
  *
  * @author José A. Pacheco Ondoño - joanpaon@gmail.com
  */
-public class DAControllerSXML implements IDAController {
+public class DataAccessControllerSBIN implements IDataAccessController {
 
     // Referencias
-    private final ModelController modelControl;
+    private final Controller control;
 
-    // Constructor Parametrizado
-    public DAControllerSXML(ModelController modelControl) {
-        this.modelControl = modelControl;
+    public DataAccessControllerSBIN(Controller control) {
+        this.control = control;
     }
 
-    // Modelo > Fichero [SXML]
+    // Modelo > Fichero [SBIN]
     @Override
     public void exportarModelo(Model model, String fichero) throws Exception {
-        try (XMLEncoder salida = new XMLEncoder(new FileOutputStream(fichero))) {
+        try (ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream(fichero))) {
             // Escribe el modelo
             salida.writeObject(model);
         }
     }
 
-    // Fichero [SXML] > Modelo
+    // Fichero [SBIN] > Modelo
     @Override
     public void importarModelo(Model modeloFin, String fichero) throws Exception {
-        try (XMLDecoder entrada = new XMLDecoder(new FileInputStream(fichero))) {
-            // Persistencia Binaria > Modelo Importado            
+        try (ObjectInputStream entrada = new ObjectInputStream(new FileInputStream(fichero))) {
+            // Persistencia Binaria > Modelo Importado
             Model modeloIni = (Model) entrada.readObject();
 
             // Modelo Importado > Modelo
-            modelControl.copiarModelo(modeloIni, modeloFin);
+            control.convertirModeloModelo(modeloIni, modeloFin);
         }
     }
 }

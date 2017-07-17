@@ -26,20 +26,23 @@ import org.japo.java.models.Model;
  */
 public class View extends javax.swing.JFrame {
 
+    // Fichero Propiedades
+    public static final String FICHERO = "view.properties";
+
     // Referencias
-    private Controller control;
     private Model model;
+    private Controller control;
     private Properties prpView;
 
     // Constructor
     public View() {
-        // Inicializar GUI - PREVIA
+        // Inicializacion Anterior
         initBefore();
 
-        // Construcción - GUI
+        // Creación Vista
         initComponents();
 
-        // Inicializar GUI - POSTERIOR
+        // Inicializacion Posterior
         initAfter();
     }
 
@@ -62,8 +65,8 @@ public class View extends javax.swing.JFrame {
 
         pnlDatos = new javax.swing.JPanel();
         pnlControles = new javax.swing.JPanel();
-        btnCargar = new javax.swing.JButton();
-        btnGuardar = new javax.swing.JButton();
+        btnImportar = new javax.swing.JButton();
+        btnExportar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Title Comes Here");
@@ -89,19 +92,19 @@ public class View extends javax.swing.JFrame {
 
         pnlControles.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Acceso a Datos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 18))); // NOI18N
 
-        btnCargar.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        btnCargar.setText("Cargar");
-        btnCargar.addActionListener(new java.awt.event.ActionListener() {
+        btnImportar.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        btnImportar.setText("Importar");
+        btnImportar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCargarActionPerformed(evt);
+                btnImportarActionPerformed(evt);
             }
         });
 
-        btnGuardar.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        btnGuardar.setText("Guardar");
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+        btnExportar.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        btnExportar.setText("Exportar");
+        btnExportar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarActionPerformed(evt);
+                btnExportarActionPerformed(evt);
             }
         });
 
@@ -111,9 +114,9 @@ public class View extends javax.swing.JFrame {
             pnlControlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlControlesLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnCargar, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnImportar, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(59, 59, 59))
         );
         pnlControlesLayout.setVerticalGroup(
@@ -121,8 +124,8 @@ public class View extends javax.swing.JFrame {
             .addGroup(pnlControlesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlControlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCargar)
-                    .addComponent(btnGuardar))
+                    .addComponent(btnImportar)
+                    .addComponent(btnExportar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -152,20 +155,20 @@ public class View extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        control.procesarCierreVentana(evt);
+        control.procesarCierreVista(evt);
     }//GEN-LAST:event_formWindowClosing
 
-    private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
+    private void btnImportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarActionPerformed
         control.procesarImportacion(evt);
-    }//GEN-LAST:event_btnCargarActionPerformed
+    }//GEN-LAST:event_btnImportarActionPerformed
 
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+    private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
         control.procesarExportacion(evt);
-    }//GEN-LAST:event_btnGuardarActionPerformed
+    }//GEN-LAST:event_btnExportarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCargar;
-    private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnExportar;
+    private javax.swing.JButton btnImportar;
     private javax.swing.JPanel pnlControles;
     private javax.swing.JPanel pnlDatos;
     // End of variables declaration//GEN-END:variables
@@ -178,8 +181,8 @@ public class View extends javax.swing.JFrame {
         // Crear Controlador
         control = new Controller(model, this);
 
-        // Propiedades Vista
-        prpView = UtilesApp.cargarPropiedades("view.properties");
+        // Cargar Propiedades Vista
+        prpView = UtilesApp.cargarPropiedades(FICHERO);
 
         // Restaurar Estado
         control.restaurarEstadoVista(this, prpView);
@@ -193,7 +196,7 @@ public class View extends javax.swing.JFrame {
         control.sincronizarModeloVista(model, this);
 
         // Enfocar Control Inicial
-        btnCargar.requestFocus();
+        btnImportar.requestFocus();
 
         // Otras inicializaciones
     }

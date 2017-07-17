@@ -22,7 +22,7 @@ import org.japo.java.models.Model;
  * @author José A. Pacheco Ondoño - joanpaon@gmail.com
  *
  */
-public interface IDAController {
+public interface IDataAccessController {
 
     public void importarModelo(Model model, String fichero) throws Exception;
 

@@ -16,22 +16,20 @@
 package org.japo.java.controllers;
 
 import java.util.Properties;
+import org.japo.java.interfaces.IDataAccessController;
 import org.japo.java.models.Model;
 import org.japo.java.libraries.UtilesApp;
-import org.japo.java.interfaces.IDAController;
 
 /**
  *
  * @author José A. Pacheco Ondoño - joanpaon@gmail.com
  */
-public class DAControllerPRP implements IDAController {
-
+public class DataAccessControllerPRP implements IDataAccessController {
     // Referencias
-    private final ModelController modelControl;
+    private final Controller control;
 
-    // Constructor Parametrizado
-    public DAControllerPRP(ModelController modelControl) {
-        this.modelControl = modelControl;
+    public DataAccessControllerPRP(Controller control) {
+        this.control = control;
     }
 
     // Modelo > Fichero [Propiedades de Java]
@@ -41,7 +39,7 @@ public class DAControllerPRP implements IDAController {
         Properties prp = new Properties();
         
         // Modelo > Propiedades
-        modelControl.asignarModeloPropiedades(model, prp);
+        control.convertirModeloPropiedades(model, prp);
 
         // Guarda las propiedades
         UtilesApp.guardarPropiedades(prp, fichero);
@@ -54,6 +52,6 @@ public class DAControllerPRP implements IDAController {
         Properties prp = UtilesApp.cargarPropiedades(fichero);
 
         // Propiedades > Modelo
-        modelControl.asignarPropiedadesModelo(prp, model);
+        control.convertirPropiedadesModelo(prp, model);
     }
 }
