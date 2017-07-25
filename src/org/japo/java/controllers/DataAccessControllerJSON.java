@@ -29,14 +29,23 @@ import org.japo.java.models.Model;
  * @author José A. Pacheco Ondoño - joanpaon@gmail.com
  */
 public class DataAccessControllerJSON implements IDataAccessController {
-    // Referencias
-    private final Controller control;
 
-    public DataAccessControllerJSON(Controller control) {
-        this.control = control;
+    // Fichero JSON > Modelo
+    @Override
+    public void importarModelo(Model modeloFin, String fichero) throws Exception {
+        try (JsonReader entrada = new JsonReader(new FileReader(fichero))) {
+            // Crea Objeto Gson
+            Gson gson = new Gson();
+
+            // Fichero JSON > Modelo (Importado)
+            Model modeloIni = gson.fromJson(entrada, Model.class);
+
+            // Modelo (Importado) > Modelo
+            convertirModeloModelo(modeloIni, modeloFin);
+        }
     }
 
-    // Modelo > Fichero [JSON]
+    // Modelo > Fichero JSON
     @Override
     public void exportarModelo(Model model, String fichero) throws Exception {
         try (Writer salida = new FileWriter(fichero)) {
@@ -48,18 +57,8 @@ public class DataAccessControllerJSON implements IDataAccessController {
         }
     }
 
-    // Fichero [JSON] > Modelo
-    @Override
-    public void importarModelo(Model modeloFin, String fichero) throws Exception {
-        try (JsonReader entrada = new JsonReader(new FileReader(fichero))) {
-            // Crea Objeto Gson
-            Gson gson = new Gson();
+    // Modelo > Modelo
+    public void convertirModeloModelo(Model modeloIni, Model modeloFin) {
 
-            // Fichero JSON > Modelo Importado
-            Model modeloIni = gson.fromJson(entrada, Model.class);
-
-            // Modelo Importado > Modelo
-            control.convertirModeloModelo(modeloIni, modeloFin);
-        }
     }
 }

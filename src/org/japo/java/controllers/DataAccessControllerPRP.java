@@ -25,33 +25,37 @@ import org.japo.java.libraries.UtilesApp;
  * @author José A. Pacheco Ondoño - joanpaon@gmail.com
  */
 public class DataAccessControllerPRP implements IDataAccessController {
-    // Referencias
-    private final Controller control;
 
-    public DataAccessControllerPRP(Controller control) {
-        this.control = control;
+    // Fichero Propiedades > Modelo
+    @Override
+    public void importarModelo(Model model, String fichero) throws Exception {
+        // Fichero Propiedades > Propiedades
+        Properties prp = UtilesApp.cargarPropiedades(fichero);
+
+        // Propiedades > Modelo
+        convertirPropiedadesModelo(prp, model);
     }
 
-    // Modelo > Fichero [Propiedades de Java]
+    // Modelo > Fichero Propiedades
     @Override
     public void exportarModelo(Model model, String fichero) throws Exception {
         // Propiedades
         Properties prp = new Properties();
-        
-        // Modelo > Propiedades
-        control.convertirModeloPropiedades(model, prp);
 
-        // Guarda las propiedades
+        // Modelo > Propiedades
+        convertirModeloPropiedades(model, prp);
+
+        // Propiedades > Fichero Propiedades
         UtilesApp.guardarPropiedades(prp, fichero);
     }
 
-    // Fichero [Propiedades de Java] > Modelo
-    @Override
-    public void importarModelo(Model model, String fichero) throws Exception {
-        // Carga Propiedades
-        Properties prp = UtilesApp.cargarPropiedades(fichero);
+    // Modelo > Propiedades
+    void convertirModeloPropiedades(Model model, Properties prp) {
 
-        // Propiedades > Modelo
-        control.convertirPropiedadesModelo(prp, model);
+    }
+
+    // Propiedades > Modelo
+    void convertirPropiedadesModelo(Properties prp, Model model) {
+
     }
 }

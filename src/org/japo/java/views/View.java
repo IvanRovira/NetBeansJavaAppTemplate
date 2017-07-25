@@ -173,7 +173,7 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JPanel pnlDatos;
     // End of variables declaration//GEN-END:variables
 
-    // Inicializar GUI - PREVIA
+    // Inicializacion Anterior
     private void initBefore() {
         // Crear Modelo
         model = new Model();
@@ -190,7 +190,7 @@ public class View extends javax.swing.JFrame {
         // Otras inicializaciones
     }
 
-    // Inicializar GUI - POSTERIOR
+    // Inicializacion Posterior
     private void initAfter() {
         // Modelo > Vista
         control.sincronizarModeloVista(model, this);

@@ -18,7 +18,6 @@ package org.japo.java.libraries;
 import java.awt.Color;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
 import javax.swing.JTextField;
 
 /**
@@ -34,10 +33,10 @@ public class UtilesValidacion {
 
         // Realizar Validación
         try {
-            // Compilar Expresión Regular
+            // Patrón de la expresión regular
             Pattern patron = Pattern.compile(expReg);
 
-            // Detector para Texto de Prueba
+            // Detector Texto de Prueba
             Matcher detector = patron.matcher(dato);
 
             // Averiguar Coincidencia

@@ -25,23 +25,36 @@ import org.japo.java.libraries.UtilesCSV;
  */
 public class DataAccessControllerCSV implements IDataAccessController {
 
-    // Fichero [CSV] > Modelo
+    // Fichero CSV > Modelo
     @Override
     public void importarModelo(Model model, String fichero) throws Exception {
-        // Importar Items CSV
+        // Fichero CSV > Lista Items
         String[] items = UtilesCSV.importarItemsCSV(fichero);
 
-        // Lista de Items > Modelo
+        // Lista Items > Modelo
+        convertirArrayModelo(items, model);
     }
 
-    // Modelo > Fichero [CSV]
+    // Modelo > Fichero CSV
     @Override
     public void exportarModelo(Model model, String fichero) throws Exception {
-        // Lista de Items
+        // Lista Items
         String[] items = new String[Model.NUM_ITEMS];
 
-        // Modelo > Lista de Items
-        // Exportar Items CSV
+        // Modelo > Lista Items
+        convertirModeloArray(model, items);
+        
+        // Lista Items > Fichero CSV
         UtilesCSV.exportarItemsCSV(items, fichero);
+    }
+    
+    // Modelo > Lista Items
+    public void convertirModeloArray(Model model, String[] items) {
+
+    }
+
+    // Lista Items > Modelo
+    public void convertirArrayModelo(String[] items, Model model) {
+
     }
 }

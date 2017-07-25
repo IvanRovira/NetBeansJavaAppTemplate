@@ -21,8 +21,6 @@ import org.japo.java.views.View;
 /**
  *
  * @author José A. Pacheco Ondoño - joanpaon@gmail.com
- *
- * Arranque e inicialización de la aplicación
  */
 public class Main {
 
@@ -31,13 +29,12 @@ public class Main {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                // Instancia la ventana
+                // Instancia Vista
                 View view = new View();
 
-                // Muestra la ventana
+                // Muestra Vista
                 view.setVisible(true);
             }
         });
     }
-
 }
