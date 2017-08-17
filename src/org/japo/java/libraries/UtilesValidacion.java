@@ -101,4 +101,22 @@ public class UtilesValidacion {
         // Resultado de la validación
         return validacionOK;
     }
+
+    // Validar URL
+    public static boolean validarURL(String url) {
+        // Expresión Regular
+        final String ER = "^(https?://)?(([\\w!~*'().&=+$%-]+: )?[\\w!~*'().&=+$%-]+@)?(([0-9]{1,3}\\.){3}[0-9]{1,3}|([\\w!~*'()-]+\\.)*([\\w^-][\\w-]{0,61})?[\\w]\\.[a-z]{2,6})(:[0-9]{1,4})?((/*)|(/+[\\w!~*'().;?:@&=+$,%#-]+)+/*)$";
+
+        // Devuelve Semáforo
+        return validarDato(url, ER);
+}
+
+    // Validar email
+    public static boolean validarEMail(String email) {
+        // Expresión Regular
+        final String ER = "[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*";
+
+        // Devuelve Semáforo
+        return validarDato(email, ER);
+    }
 }
