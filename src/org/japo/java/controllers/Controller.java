@@ -31,9 +31,12 @@ import org.japo.java.interfaces.IDataAccessController;
  */
 public class Controller {
 
-    // Fichero Propiedades
-    public static final String FICHERO = "app.properties";
-    
+    // Propiedades Aplicación
+    public static final String PRP_FICHERO_DATOS = "fichero_datos";
+
+    // Fichero Propiedades Aplicación
+    public static final String FICHERO_PRP = "app.properties";
+
     // Referencias
     private final Model model;
     private final View view;
@@ -47,7 +50,7 @@ public class Controller {
         this.view = view;
 
         // Cargar Propiedades Aplicación
-        this.prpApp = UtilesApp.cargarPropiedades(FICHERO);
+        this.prpApp = UtilesApp.cargarPropiedades(FICHERO_PRP);
 
         // *** Controlador de Persistencia ***
         this.dac = new DataAccessControllerJSON();
@@ -57,16 +60,13 @@ public class Controller {
     public void procesarImportacion(ActionEvent evt) {
         try {
             // Fichero de Datos
-            String fichero = prpApp.getProperty("fichero_datos");
+            String fichero = prpApp.getProperty(PRP_FICHERO_DATOS);
 
             // Persistencia > Modelo
             dac.importarModelo(model, fichero);
 
             // Modelo > Vista
             sincronizarModeloVista(model, view);
-
-            // Validar Datos Importados > Vista
-            validarControlesSubjetivos(view);
 
             // Mensaje - Importación OK
             String msg = "Datos importados correctamente";
@@ -87,7 +87,7 @@ public class Controller {
                 sincronizarVistaModelo(view, model);
 
                 // Fichero de Datos
-                String fichero = prpApp.getProperty("fichero_datos");
+                String fichero = prpApp.getProperty(PRP_FICHERO_DATOS);
 
                 // Modelo > Persistencia
                 dac.exportarModelo(model, fichero);
@@ -118,19 +118,25 @@ public class Controller {
 
     // Validar Controles Subjetivos
     private boolean validarControlesSubjetivos(View view) {
+//        // Validación Controles Subjetivos
+//        boolean item1OK = UtilesValidacion.validarCampoTexto(view.txfItem1, Model.ER_ITEM1, "?");
+//        boolean item2OK = UtilesValidacion.validarCampoTexto(view.txfItem2, Model.ER_ITEM2, "?");
+//
+//        // Devolver Validación
+//        return item1OK && item2OK;
         return true;
     }
 
     // Propiedades Vista > Estado Vista
     public void restaurarEstadoVista(View view, Properties prp) {
         // Establecer Favicon
-        UtilesSwing.establecerFavicon(view, prp.getProperty("ruta_favicon"));
+        UtilesSwing.establecerFavicon(view, prp.getProperty(View.PRP_RUTA_FAVICON, "img/favicon.png"));
 
         // Establece Lnf
-        UtilesSwing.establecerLnF(prp.getProperty("lnf", UtilesSwing.WINDOWS));
+        UtilesSwing.establecerLnF(prp.getProperty(View.PRP_LOOK_AND_FEEL, UtilesSwing.WINDOWS));
 
         // Activa Singleton
-        if (!UtilesApp.activarInstancia(prp.getProperty("puerto_bloqueo", UtilesApp.PUERTO_BLOQUEO))) {
+        if (!UtilesApp.activarInstancia(prp.getProperty(View.PRP_PUERTO_BLOQUEO, UtilesApp.PUERTO_BLOQUEO))) {
             UtilesSwing.terminarPrograma(view);
         }
 

@@ -25,8 +25,12 @@ import org.japo.java.models.Model;
  * @author José A. Pacheco Ondoño - joanpaon@gmail.com
  */
 public class View extends javax.swing.JFrame {
+    // Propiedades Vista
+    public static final String PRP_PUERTO_BLOQUEO = "puerto_bloqueo";
+    public static final String PRP_LOOK_AND_FEEL = "lnf";
+    public static final String PRP_RUTA_FAVICON = "ruta_favicon";
 
-    // Fichero Propiedades
+    // Fichero Propiedades Vista
     public static final String FICHERO = "view.properties";
 
     // Referencias

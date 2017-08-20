@@ -70,28 +70,52 @@ public class UtilesSwing {
     }
 
     // Establecer LnF
-    public static void establecerLnF(String lnf) {
+    public static boolean establecerLnF(String lnf) {
+        // Semáforo
+        boolean procesoOK = false;
+
         try {
+            // Instala LnF
             UIManager.setLookAndFeel(lnf);
+
+            // Actualiza semáforo
+            procesoOK = true;
         } catch (ClassNotFoundException | IllegalAccessException
                 | InstantiationException | UnsupportedLookAndFeelException e) {
-            System.out.println(e.getLocalizedMessage());
+            System.out.println("ERROR: Instalación del LnF");
         }
+
+        // Devuelve semáforo
+        return procesoOK;
     }
 
     // Escalar/Asignar Image > Etiqueta
-    public static void asignarImagenEscalada(JLabel lblImagen, Image imgOriginal) {
-        // Obtiene la imagen escalada
-        Image imgEscalada = imgOriginal.getScaledInstance(
-                lblImagen.getSize().width,
-                lblImagen.getSize().height,
-                Image.SCALE_FAST);
+    public static boolean asignarImagenEscalada(JLabel lblImagen, Image imgOriginal) {
+        // Semáforo
+        boolean procesoOK = false;
 
-        // Image (Final) > Icon
-        Icon i = new ImageIcon(imgEscalada);
+        try {
 
-        // Icon > Etiqueta Imagen
-        lblImagen.setIcon(i);
+            // Obtiene la imagen escalada
+            Image imgEscalada = imgOriginal.getScaledInstance(
+                    lblImagen.getSize().width,
+                    lblImagen.getSize().height,
+                    Image.SCALE_FAST);
+
+            // Image (Final) > Icon
+            Icon i = new ImageIcon(imgEscalada);
+
+            // Icon > Etiqueta Imagen
+            lblImagen.setIcon(i);
+
+            // Actualiza semáforo
+            procesoOK = true;
+        } catch (Exception e) {
+            System.out.println("ERROR: Reescalar/Asignar imagen a etiqueta");
+        }
+
+        // Devuelve semáforo
+        return procesoOK;
     }
 
     // Obtiene el texto copiado al portapapeles
@@ -110,7 +134,7 @@ public class UtilesSwing {
             // Extrae texto del portapapeles
             result = (String) contents.getTransferData(DataFlavor.stringFlavor);
         } catch (HeadlessException | UnsupportedFlavorException | IOException e) {
-            System.out.println(e);
+            System.out.println("ERROR: Lectura del portapapeles");
         }
 
         // Texto extraido
@@ -118,15 +142,28 @@ public class UtilesSwing {
     }
 
     // Coloca texto en el portapapeles
-    public static void ponerTextoPortapapeles(String texto, ClipboardOwner propietario) {
-        // Entidad que implementa la capacidad de transmitir texto
-        StringSelection transmisor = new StringSelection(texto);
+    public static boolean ponerTextoPortapapeles(String texto, ClipboardOwner propietario) {
+        // Semáforo
+        boolean procesoOK = false;
 
-        // Acceso al portapapeles
-        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+        try {
+            // Entidad que implementa la capacidad de transmitir texto
+            StringSelection transmisor = new StringSelection(texto);
 
-        // Transmisión de texto
-        clipboard.setContents(transmisor, propietario);
+            // Acceso al portapapeles
+            Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+
+            // Transmisión de texto
+            clipboard.setContents(transmisor, propietario);
+
+            // Actualiza semáforo
+            procesoOK = true;
+        } catch (Exception e) {
+            System.out.println("ERROR: Escritura en el portapapeles");
+        }
+
+        // Devuelve semáforo
+        return procesoOK;
     }
 
     // Cambiar valor sin disparar Eventos de Ajuste
@@ -191,7 +228,7 @@ public class UtilesSwing {
             cbbActual.addActionListener(al);
         }
     }
-    
+
     // Asignar Favicon Ventana
     public static void establecerFavicon(JFrame ventana, String rutaFavicon) {
         try {
@@ -201,7 +238,7 @@ public class UtilesSwing {
             // URL Favicon > Ventana Favicon
             ventana.setIconImage(new ImageIcon(urlICN).getImage());
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("ERROR: Instalación del icono de la ventana");
         }
     }
 }

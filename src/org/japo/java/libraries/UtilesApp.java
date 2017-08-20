@@ -47,7 +47,7 @@ public class UtilesApp {
         try (FileReader fr = new FileReader(rutaFichero)) {
             prp.load(fr);
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("ERROR: Acceso al fichero " + rutaFichero);
         }
 
         // Devolver Propiedades
@@ -121,8 +121,7 @@ public class UtilesApp {
             // Marca Semáforo
             instanciaOK = true;
         } catch (IOException | NumberFormatException e) {
-            // Mensaje Informativo
-            System.out.println(e);
+            System.out.println("ERROR: Activación ejecución única");
         }
 
         // Devuelve Estado

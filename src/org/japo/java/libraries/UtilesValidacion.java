@@ -49,6 +49,31 @@ public class UtilesValidacion {
         return testOK;
     }
 
+    // Campo de texto + DNI + Texto campo vacío
+    public static boolean validarCampoDNI(
+            JTextField txfActual, String textoCampoVacio) {
+        // Texto del campo - No espaciadores
+        String textoActual = txfActual.getText().trim();
+
+        // Campo vacio
+        textoActual = textoActual.equals("") ? textoCampoVacio : textoActual;
+
+        // Valida el Dato
+        boolean validacionOK = UtilesDNI.validarDNI(textoActual);
+
+        // Señala la validación
+        if (validacionOK) {
+            // Señalar Contenido Correcto
+            txfActual.setForeground(Color.BLACK);
+        } else {
+            // Señalar Contenido Erróneo
+            txfActual.setForeground(Color.RED);
+        }
+
+        // Resultado de la validación
+        return validacionOK;
+    }
+
     // Campo de texto + FECHA + Texto campo vacío
     public static boolean validarCampoFecha(
             JTextField txfActual, String textoCampoVacio) {

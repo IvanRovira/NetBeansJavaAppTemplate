@@ -43,18 +43,27 @@ public class DataAccessControllerCSV implements IDataAccessController {
 
         // Modelo > Lista Items
         convertirModeloArray(model, items);
-        
+
         // Lista Items > Fichero CSV
         UtilesCSV.exportarItemsCSV(items, fichero);
     }
-    
+
     // Modelo > Lista Items
     public void convertirModeloArray(Model model, String[] items) {
 
     }
 
     // Lista Items > Modelo
-    public void convertirArrayModelo(String[] items, Model model) {
-
+    public void convertirArrayModelo(String[] items, Model model) throws Exception {
+        /*
+        1 - Sustituir Item1 por el primer campo del modelo
+        2 - Repetir estructura para el resto de items
+        */
+//        // Item1
+//        if (UtilesValidacion.validarDato(items[Model.POS_ITEM1], Model.ER_ITEM1)) {
+//            model.setItem1(items[Model.POS_ITEM1]);
+//        } else {
+//            throw new Exception("Datos corruptos");
+//        }
     }
 }

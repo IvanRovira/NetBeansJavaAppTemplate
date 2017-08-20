@@ -22,6 +22,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.Writer;
 import org.japo.java.interfaces.IDataAccessController;
+import org.japo.java.libraries.UtilesValidacion;
 import org.japo.java.models.Model;
 
 /**
@@ -58,7 +59,16 @@ public class DataAccessControllerJSON implements IDataAccessController {
     }
 
     // Modelo > Modelo
-    public void convertirModeloModelo(Model modeloIni, Model modeloFin) {
-
+    public void convertirModeloModelo(Model modeloIni, Model modeloFin) throws Exception {
+        /*
+        1 - Sustituir Item1 por el primer campo del modelo
+        2 - Repetir estructura para el resto de items
+        */
+//        // Item1
+//        if (UtilesValidacion.validarDato(modeloIni.getItem1(), Model.ER_ITEM1)) {
+//            modeloFin.setItem1(modeloIni.getItem1());
+//        } else {
+//            throw new Exception("Datos corruptos");
+//        }
     }
 }

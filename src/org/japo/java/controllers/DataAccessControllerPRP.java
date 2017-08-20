@@ -19,13 +19,16 @@ import java.util.Properties;
 import org.japo.java.interfaces.IDataAccessController;
 import org.japo.java.models.Model;
 import org.japo.java.libraries.UtilesApp;
+import org.japo.java.libraries.UtilesValidacion;
 
 /**
  *
  * @author José A. Pacheco Ondoño - joanpaon@gmail.com
  */
 public class DataAccessControllerPRP implements IDataAccessController {
-
+    // Nombres Propiedades
+//    public static final String PRP_ITEM1 = "nombre.subnombre";
+    
     // Fichero Propiedades > Modelo
     @Override
     public void importarModelo(Model model, String fichero) throws Exception {
@@ -55,7 +58,16 @@ public class DataAccessControllerPRP implements IDataAccessController {
     }
 
     // Propiedades > Modelo
-    void convertirPropiedadesModelo(Properties prp, Model model) {
-
+    void convertirPropiedadesModelo(Properties prp, Model model) throws Exception {
+        /*
+        1 - Sustituir Item1 por el primer campo del modelo
+        2 - Repetir estructura para el resto de items
+        */
+        // Item1
+//        if (UtilesValidacion.validarDato(prp.getProperty(PRP_ITEM1), Model.ER_ITEM1)) {
+//            model.setItem1(model.getItem1());
+//        } else {
+//            throw new Exception("Datos corruptos");
+//        }
     }
 }
