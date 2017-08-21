@@ -1,4 +1,4 @@
-/*
+/* 
  * Copyright 2017 José A. Pacheco Ondoño - joanpaon@gmail.com.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,17 +21,19 @@ package org.japo.java.libraries;
  */
 public class UtilesDNI {
 
-    // Limites DNI
+    // Limites número DNI
     public final static int DNI_MIN = 10000000;
     public final static int DNI_MAX = 99999999;
 
-    // Secuencia de letras
+    // Secuencia letras DNI
     public static final String LETRAS = "TRWAGMYFPDXBNJZSQVHLCKE";
 
+    // Calcula letra a partir del número de DNI
     public static char calcularLetraDNI(int dni) {
         return LETRAS.charAt(dni % LETRAS.length());
     }
 
+    // Extraer número del DNI
     public static int extraerNumeroDNI(String dni) {
         // Almacen del DNI extraido
         int numeroDNI;
@@ -42,7 +44,7 @@ public class UtilesDNI {
             numeroDNI = Integer.parseInt(dni.substring(0, 8));
 
             // Valida el DNI
-            if (validarNumeroDNI(numeroDNI) == false) {
+            if (validarRangoDNI(numeroDNI) == false) {
                 throw new Exception("DNI erróneo");
             }
         } catch (Exception e) {
@@ -54,6 +56,7 @@ public class UtilesDNI {
         return numeroDNI;
     }
 
+    // Extraer letra del DNI
     public static char extraerLetraDNI(String dni) {
         // Posición guión
         int posGuion = dni.indexOf('-');
@@ -83,22 +86,30 @@ public class UtilesDNI {
         return letra;
     }
 
-    public static boolean validarNumeroDNI(int numero) {
+    // Número de DNI entre mínimo y máximo
+    public static boolean validarRangoDNI(int numero) {
         return numero >= DNI_MIN && numero <= DNI_MAX;
     }
 
+    // Valida DNI - Formato texto
     public static boolean validarDNI(String dni) {
-        // Semáforo de validación
-        boolean dniOK;
-
         // Extraer DNI
         int numero = extraerNumeroDNI(dni);
 
         // Extraer LETRA
         char letra = extraerLetraDNI(dni);
 
+        // Resultado del análisis
+        return validarDNI(numero, letra);
+    }
+
+    // Valida DNI - Formato número + letra
+    public static boolean validarDNI(int numero, char letra) {
+        // Semáforo de validación
+        boolean dniOK;
+
         // Análisis DNI
-        if (!validarNumeroDNI(numero)) {
+        if (!validarRangoDNI(numero)) {
             // DNI NO válido
             dniOK = false;
         } else {
