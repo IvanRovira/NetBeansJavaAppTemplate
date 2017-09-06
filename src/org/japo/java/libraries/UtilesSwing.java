@@ -35,7 +35,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JSlider;
 import javax.swing.JSpinner;
-import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.event.ChangeListener;
 
@@ -45,17 +44,12 @@ import javax.swing.event.ChangeListener;
  */
 public class UtilesSwing {
 
-    // LnF - UNIX
-    public static final String GTK = "com.sun.java.swing.plaf.gtk.GTKLookAndFeel";
-
-    // LnF - WINDOWS
-    public static final String WINDOWS = "com.sun.java.swing.plaf.windows.WindowsLookAndFeel";
-    public static final String WINDOWS_CLASSIC = "com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel";
-
-    // LnF
-    public static final String MOTIF = "com.sun.java.swing.plaf.motif.MotifLookAndFeel";
-    public static final String METAL = "javax.swing.plaf.metal.MetalLookAndFeel";
-    public static final String NIMBUS = "javax.swing.plaf.nimbus.NimbusLookAndFeel";
+    // Perfiles LnF
+    public static final String LNF_GTK = "GTK";
+    public static final String LNF_WINDOWS = "Windows";
+    public static final String LNF_MOTIF = "Motif";
+    public static final String LNF_METAL = "Metal";
+    public static final String LNF_NIMBUS = "Nimbus";
 
     // Cerrar programa
     public static void terminarPrograma(JFrame f) {
@@ -74,9 +68,14 @@ public class UtilesSwing {
         // Semáforo
         boolean procesoOK = false;
 
+        // Instala LnF
         try {
-            // Instala LnF
-            UIManager.setLookAndFeel(lnf);
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if (lnf.equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
 
             // Actualiza semáforo
             procesoOK = true;
@@ -94,8 +93,8 @@ public class UtilesSwing {
         // Semáforo
         boolean procesoOK = false;
 
+        // Procesado Imagen
         try {
-
             // Obtiene la imagen escalada
             Image imgEscalada = imgOriginal.getScaledInstance(
                     lblImagen.getSize().width,

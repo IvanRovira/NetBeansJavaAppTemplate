@@ -25,21 +25,26 @@ import org.japo.java.models.Model;
  * @author José A. Pacheco Ondoño - joanpaon@gmail.com
  */
 public class View extends javax.swing.JFrame {
+
+    // Fichero Propiedades Vista
+    public static final String FICHERO_PROPIEDADES = "view.properties";
+
     // Propiedades Vista
     public static final String PRP_PUERTO_BLOQUEO = "puerto_bloqueo";
     public static final String PRP_LOOK_AND_FEEL = "lnf";
     public static final String PRP_RUTA_FAVICON = "ruta_favicon";
 
-    // Fichero Propiedades Vista
-    public static final String FICHERO = "view.properties";
-
     // Referencias
     private Model model;
-    private Controller control;
+    private final Controller control;
     private Properties prpView;
 
     // Constructor
-    public View() {
+    public View(Model model, Controller control) {
+        // Memorizar Referencias
+        this.model = model;
+        this.control = control;
+
         // Inicializacion Anterior
         initBefore();
 
@@ -179,14 +184,8 @@ public class View extends javax.swing.JFrame {
 
     // Inicializacion Anterior
     private void initBefore() {
-        // Crear Modelo
-        model = new Model();
-
-        // Crear Controlador
-        control = new Controller(model, this);
-
         // Cargar Propiedades Vista
-        prpView = UtilesApp.cargarPropiedades(FICHERO);
+        prpView = UtilesApp.cargarPropiedades(FICHERO_PROPIEDADES);
 
         // Restaurar Estado
         control.restaurarEstadoVista(this, prpView);

@@ -49,7 +49,7 @@ public class UtilesValidacion {
         return testOK;
     }
 
-    // Campo de texto + DNI + Texto campo vacío
+    // Campo de texto con DNI + Texto campo vacío
     public static boolean validarCampoDNI(
             JTextField txfActual, String textoCampoVacio) {
         // Texto del campo - No espaciadores
@@ -74,7 +74,7 @@ public class UtilesValidacion {
         return validacionOK;
     }
 
-    // Campo de texto + FECHA + Texto campo vacío
+    // Campo de texto con FECHA + Texto campo vacío
     public static boolean validarCampoFecha(
             JTextField txfActual, String textoCampoVacio) {
         // Texto del campo - No espaciadores
@@ -99,7 +99,7 @@ public class UtilesValidacion {
         return validacionOK;
     }
 
-    // Campo de texto + ExpReg + Texto campo vacío
+    // Campo de texto con DATO + ExpReg + Texto campo vacío
     public static boolean validarCampoTexto(
             JTextField txfActual, String expReg, String textoCampoVacio) {
         // Texto del campo - No espaciadores
@@ -112,7 +112,35 @@ public class UtilesValidacion {
         txfActual.setText(textoActual);
 
         // Valida el Dato
-        boolean validacionOK = UtilesValidacion.validarDato(textoActual, expReg);
+        boolean validacionOK = validarDato(textoActual, expReg);
+
+        // Señala la validación
+        if (validacionOK) {
+            // Señalar Contenido Correcto
+            txfActual.setForeground(Color.BLACK);
+        } else {
+            // Señalar Contenido Erróneo
+            txfActual.setForeground(Color.RED);
+        }
+
+        // Resultado de la validación
+        return validacionOK;
+    }
+
+    // Campo de texto con DATO + Lista + Texto campo vacío
+    public static boolean validarCampoTextoLista(
+            JTextField txfActual, String[] lista, String textoCampoVacio) {
+        // Texto del campo - No espaciadores
+        String textoActual = txfActual.getText().trim();
+
+        // Comprueba campo vacío
+        textoActual = textoActual.equals("") ? textoCampoVacio : textoActual;
+
+        // Restaura el texto formateado
+        txfActual.setText(textoActual);
+
+        // Valida el Dato
+        boolean validacionOK = validarDatoLista(textoActual, lista);
 
         // Señala la validación
         if (validacionOK) {
@@ -134,7 +162,7 @@ public class UtilesValidacion {
 
         // Devuelve Semáforo
         return validarDato(url, ER);
-}
+    }
 
     // Validar email
     public static boolean validarEMail(String email) {
@@ -143,5 +171,31 @@ public class UtilesValidacion {
 
         // Devuelve Semáforo
         return validarDato(email, ER);
+    }
+
+    // Validar Dato < Lista Datos
+    public static boolean validarDatoLista(String dato, String[] lista) {
+        // Semáforo Validación
+        boolean validacionOK = false;
+
+        // Proceso Validación
+        if (lista != null) {
+            // Referencia Expresión Regular
+            String er = "";
+
+            // Construye Expresión Regular
+            for (String item : lista) {
+                er += item + "|";
+            }
+
+            // Elimina Operador Final
+            er = er.substring(0, er.lastIndexOf("|"));
+
+            // Calcula Semáforo
+            validacionOK = validarDato(dato, er);
+        }
+
+        // Devuelve Semáforo
+        return validacionOK;
     }
 }

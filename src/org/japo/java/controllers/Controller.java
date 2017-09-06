@@ -15,6 +15,7 @@
  */
 package org.japo.java.controllers;
 
+import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowEvent;
 import java.util.Properties;
@@ -31,11 +32,12 @@ import org.japo.java.interfaces.IDataAccessController;
  */
 public class Controller {
 
-    // Propiedades Aplicación
-    public static final String PRP_FICHERO_DATOS = "fichero_datos";
-
     // Fichero Propiedades Aplicación
-    public static final String FICHERO_PRP = "app.properties";
+    public static final String FICHERO_PROPIEDADES = "app.properties";
+
+    // Propiedades Aplicación
+    public static final String PRP_DA_FICHERO = "da.fichero";
+    public static final String PRP_DA_PERSISTENCIA = "da.persistencia";
 
     // Referencias
     private final Model model;
@@ -43,24 +45,29 @@ public class Controller {
     private final Properties prpApp;
     private final IDataAccessController dac;
 
-    // Constructor Parametrizado
-    public Controller(Model model, View view) {
-        // Memorizar Referencias
-        this.model = model;
-        this.view = view;
+    // Constructor Predeterminado
+    public Controller() {
+        // Crear Modelo
+        model = new Model();
+
+        // Crear Vista
+        view = new View(model, this);
+        EventQueue.invokeLater(() -> {
+            view.setVisible(true);
+        });
 
         // Cargar Propiedades Aplicación
-        this.prpApp = UtilesApp.cargarPropiedades(FICHERO_PRP);
+        prpApp = UtilesApp.cargarPropiedades(FICHERO_PROPIEDADES);
 
-        // *** Controlador de Persistencia ***
-        this.dac = new DataAccessControllerJSON();
+        // Controlador de Acceso a Datos
+        dac = DataAccessControllerFactory.obtenerDAC(prpApp);
     }
 
     // Persistencia > Modelo > Vista
     public void procesarImportacion(ActionEvent evt) {
         try {
             // Fichero de Datos
-            String fichero = prpApp.getProperty(PRP_FICHERO_DATOS);
+            String fichero = prpApp.getProperty(PRP_DA_FICHERO);
 
             // Persistencia > Modelo
             dac.importarModelo(model, fichero);
@@ -87,7 +94,7 @@ public class Controller {
                 sincronizarVistaModelo(view, model);
 
                 // Fichero de Datos
-                String fichero = prpApp.getProperty(PRP_FICHERO_DATOS);
+                String fichero = prpApp.getProperty(PRP_DA_FICHERO);
 
                 // Modelo > Persistencia
                 dac.exportarModelo(model, fichero);
@@ -133,7 +140,7 @@ public class Controller {
         UtilesSwing.establecerFavicon(view, prp.getProperty(View.PRP_RUTA_FAVICON, "img/favicon.png"));
 
         // Establece Lnf
-        UtilesSwing.establecerLnF(prp.getProperty(View.PRP_LOOK_AND_FEEL, UtilesSwing.WINDOWS));
+        UtilesSwing.establecerLnF(prp.getProperty(View.PRP_LOOK_AND_FEEL, UtilesSwing.LNF_WINDOWS));
 
         // Activa Singleton
         if (!UtilesApp.activarInstancia(prp.getProperty(View.PRP_PUERTO_BLOQUEO, UtilesApp.DEF_PUERTO_BLOQUEO))) {

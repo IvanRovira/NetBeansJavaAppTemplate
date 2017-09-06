@@ -15,8 +15,7 @@
  */
 package org.japo.java.main;
 
-import java.awt.EventQueue;
-import org.japo.java.views.View;
+import org.japo.java.controllers.Controller;
 
 /**
  *
@@ -26,15 +25,7 @@ public class Main {
 
     // Punto de entrada a la aplicación
     public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                // Instancia Vista
-                View view = new View();
-
-                // Muestra Vista
-                view.setVisible(true);
-            }
-        });
+        // Lanzar Controlador
+        Controller control = new Controller();
     }
 }
