@@ -15,15 +15,10 @@
  */
 package org.japo.java.forms;
 
-import java.awt.Image;
-import java.awt.event.WindowEvent;
-import java.net.URL;
 import java.util.Properties;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import org.japo.java.components.BackgroundPanel;
-import org.japo.java.lib.UtilesApp;
+import org.japo.java.libraries.UtilesSwing;
 
 /**
  *
@@ -31,76 +26,55 @@ import org.japo.java.lib.UtilesApp;
  */
 public class GUI extends JFrame {
 
-    // Propiedades APP
-    private Properties prpApp;
+    // Propiedades App
+    public static final String PRP_LOOK_AND_FEEL = "look_and_feel";
+    public static final String PRP_FAVICON = "favicon";
+
+    // Valores por Defecto
+    public static final String DEF_LOOK_AND_FEEL = UtilesSwing.LNF_NIMBUS;
+    public static final String DEF_FAVICON = "img/favicon.png";
+
+    // Referencias
+    private Properties prp;
 
     // Constructor
-    public GUI() {
-        // Inicializar GUI - PREVIA
-        beforeInit();
+    public GUI(Properties prp) {
+        // Inicialización Anterior
+        initBefore(prp);
 
-        // Construcción - GUI
+        // Creación Interfaz
         initComponents();
 
-        // Inicializar GUI - POSTERIOR
-        afterInit();
-    }
-
-    // Inicializar GUI - PREVIA
-    private void beforeInit() {
-        // Restaurar Estado Previo
-        restaurarEstado();
-
-        // Otras inicializaciones
-    }
-
-    // Inicializar GUI - POSTERIOR
-    private void afterInit() {
-        // Otras inicializaciones
+        // Inicializacion Posterior
+        initAfter();
     }
 
     // Construcción - GUI
     private void initComponents() {
-        // Otros componentes
-
-        // Fondo Ventana - Recurso
-        URL urlFRM = getClass().getResource("/img/background.jpg");
-        Image imgFRM = new ImageIcon(urlFRM).getImage();
-
         // Panel Principal
-        JPanel pnlPpal = new BackgroundPanel(imgFRM);
+        JPanel pnlPpal = new JPanel();
 
-        // Icono Ventana - Recurso
-        URL urlICN = getClass().getResource("/img/favicon.png");
-        Image imgICN = new ImageIcon(urlICN).getImage();
-
-        // Ventana principal
-        setTitle("Java App Template");
+        // Ventana Principal
         setContentPane(pnlPpal);
+        setTitle("Swing Manual #00");
         setResizable(false);
-        setSize(400, 300);
+        setSize(600, 400);
         setLocationRelativeTo(null);
-        setIconImage(imgICN);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    public void procesarCerrarVentana(WindowEvent e) {
-        // Memorizar Estado Actual
-        memorizarEstado();
+    // Inicialización Anterior    
+    private void initBefore(Properties prp) {
+        // Memorizar Referencia
+        this.prp = prp;
+
+        // Establecer LnF
+        UtilesSwing.establecerLnF(prp.getProperty(PRP_LOOK_AND_FEEL, DEF_LOOK_AND_FEEL));
     }
 
-    private void memorizarEstado() {
-        // Memoriza Estado Actual
-
-        // Guardar Estado Actual
-        UtilesApp.guardarPropiedades(prpApp);
+    // Inicialización Anterior
+    private void initAfter() {
+        // Establecer Favicon
+        UtilesSwing.establecerFavicon(this, prp.getProperty(PRP_FAVICON, DEF_FAVICON));
     }
-
-    private void restaurarEstado() {
-        // Carga Propiedades App
-        prpApp = UtilesApp.cargarPropiedades();
-
-        // Restaura Estado Previo
-    }
-
 }
