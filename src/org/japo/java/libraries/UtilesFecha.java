@@ -54,105 +54,90 @@ public class UtilesFecha {
     public static final String ER_SEP_FECHA = "[/-]";
 
     // Fecha de cualquier Mes desde el dia 1 al día 28
-    public static final String ER_FECHA_DIA28 = "(" +
-                                                ER_DIA28 +
-                                                ER_SEP_FECHA +
-                                                ER_MES +
-                                                ER_SEP_FECHA +
-                                                ER_ANY +
-                                                ")";
+    public static final String ER_FECHA_DIA28 = "("
+            + ER_DIA28
+            + ER_SEP_FECHA
+            + ER_MES
+            + ER_SEP_FECHA
+            + ER_ANY
+            + ")";
 
     // Años divisibles por 400 (Hasta 4 digitos)
-    public static final String ER_ANYS_MOD400 = "(" +
-                                                "0?[48]00|[13579][26]00|[2468][048]00" +
-                                                ")";
+    public static final String ER_ANYS_MOD400 = "("
+            + "0?[48]00|[13579][26]00|[2468][048]00"
+            + ")";
 
     // Años NO divisibles por 100 pero SI divisibles por 4 (Hasta 4 dígitos)
-    public static final String ER_ANYS_MOD4_NO100 = "(" +
-                                                    "[0-9]{0,2}" +
-                                                    "((0?|[2468])[48]|[13579][26]|[2468]0)" +
-                                                    ")";    // Desde 4 hasta 96
+    public static final String ER_ANYS_MOD4_NO100 = "("
+            + "[0-9]{0,2}"
+            + "((0?|[2468])[48]|[13579][26]|[2468]0)"
+            + ")";    // Desde 4 hasta 96
 
     // Años Bisiestos (Hasta 4 digitos)
-    public static final String ER_ANYS_BISIESTOS = "(" +
-                                                   ER_ANYS_MOD400 +
-                                                   "|" +
-                                                   ER_ANYS_MOD4_NO100 +
-                                                   ")";
+    public static final String ER_ANYS_BISIESTOS = "("
+            + ER_ANYS_MOD400
+            + "|"
+            + ER_ANYS_MOD4_NO100
+            + ")";
 
     // Fecha del Dia 29 de Febreros BISIESTOS
-    public static final String ER_FECHA_DIA29_BISIESTO = "(" +
-                                                         "29" +
-                                                         ER_SEP_FECHA +
-                                                         "(2|02)" +
-                                                         ER_SEP_FECHA +
-                                                         ER_ANYS_BISIESTOS +
-                                                         ")";
+    public static final String ER_FECHA_DIA29_BISIESTO = "("
+            + "29"
+            + ER_SEP_FECHA
+            + "(2|02)"
+            + ER_SEP_FECHA
+            + ER_ANYS_BISIESTOS
+            + ")";
 
     // Meses que tienen 29/30 dias (Todos menos Febrero)
     public static final String ER_MESES_30DIAS = "(0?[13456789]|1[012])";
 
     // Fecha del Día 29 de cualquier Mes SIN Febrero
-    public static final String ER_FECHA_DIA29_NORMAL = "(" +
-                                                       "29" +
-                                                       ER_SEP_FECHA +
-                                                       ER_MESES_30DIAS +
-                                                       ER_SEP_FECHA +
-                                                       ER_ANY +
-                                                       ")";
+    public static final String ER_FECHA_DIA29_NORMAL = "("
+            + "29"
+            + ER_SEP_FECHA
+            + ER_MESES_30DIAS
+            + ER_SEP_FECHA
+            + ER_ANY
+            + ")";
 
     // Fecha del Dia 29 de cualquier Mes CON Febrero
-    public static final String ER_FECHA_DIA29 = "(" +
-                                                ER_FECHA_DIA29_BISIESTO +
-                                                "|" +
-                                                ER_FECHA_DIA29_NORMAL +
-                                                ")";
+    public static final String ER_FECHA_DIA29 = "("
+            + ER_FECHA_DIA29_BISIESTO
+            + "|"
+            + ER_FECHA_DIA29_NORMAL
+            + ")";
 
     // Fecha del Dia 30 de cualquier Mes
-    public static final String ER_FECHA_DIA30 = "(" +
-                                                "30" +
-                                                ER_SEP_FECHA +
-                                                ER_MESES_30DIAS +
-                                                ER_SEP_FECHA +
-                                                ER_ANY +
-                                                ")";
+    public static final String ER_FECHA_DIA30 = "("
+            + "30"
+            + ER_SEP_FECHA
+            + ER_MESES_30DIAS
+            + ER_SEP_FECHA
+            + ER_ANY
+            + ")";
     // Meses que tienen 31 dias
     public static final String ER_MESES_31DIAS = "(0?[13578]|1[02])";
 
     // Fecha del Día 31 de cualquier Mes
-    public static final String ER_FECHA_DIA31 = "(" +
-                                                "31" +
-                                                ER_SEP_FECHA +
-                                                ER_MESES_31DIAS +
-                                                ER_SEP_FECHA +
-                                                ER_ANY +
-                                                ")";
+    public static final String ER_FECHA_DIA31 = "("
+            + "31"
+            + ER_SEP_FECHA
+            + ER_MESES_31DIAS
+            + ER_SEP_FECHA
+            + ER_ANY
+            + ")";
 
     // Fecha
-    public static final String ER_FECHA = "(" +
-                                          ER_FECHA_DIA28 +
-                                          "|" +
-                                          ER_FECHA_DIA29 +
-                                          "|" +
-                                          ER_FECHA_DIA30 +
-                                          "|" +
-                                          ER_FECHA_DIA31 +
-                                          ")";
-
-    // Validación Fecha - Campos Separados
-    public static boolean validarFecha(int dia, int mes, int any) {
-        return dia >= 1 && dia <= 31 &&
-               (mes == 1 || mes == 3 || mes == 5 ||
-                mes == 7 || mes == 8 || mes == 10 ||
-                mes == 12) ||
-               dia >= 1 && dia <= 30 &&
-               (mes == 4 || mes == 6 || mes == 9 ||
-                mes == 11) ||
-               dia >= 1 && dia <= 29 && mes == 2 &&
-               (any % 400 == 0 ||
-                any % 100 != 0 && any % 4 == 0) ||
-               dia >= 1 && dia <= 28 && mes == 2;
-    }
+    public static final String ER_FECHA = "("
+            + ER_FECHA_DIA28
+            + "|"
+            + ER_FECHA_DIA29
+            + "|"
+            + ER_FECHA_DIA30
+            + "|"
+            + ER_FECHA_DIA31
+            + ")";
 
     // Validación Fecha - dd/mm/aaaa
     public static boolean validarFecha(String fecha) {
@@ -291,5 +276,67 @@ public class UtilesFecha {
 
         // Formatea y devuelve la Fecha
         return sdf.format(fechaHoy);
+    }
+
+    // Validación Fecha - Campos Separados
+    public static boolean validarFechaExpresion(int dia, int mes, int any) {
+        return dia >= 1 && dia <= 31
+                && (mes == 1 || mes == 3 || mes == 5
+                || mes == 7 || mes == 8 || mes == 10
+                || mes == 12)
+                || dia >= 1 && dia <= 30
+                && (mes == 4 || mes == 6 || mes == 9
+                || mes == 11)
+                || dia >= 1 && dia <= 29 && mes == 2
+                && (any % 400 == 0
+                || any % 100 != 0 && any % 4 == 0)
+                || dia >= 1 && dia <= 28 && mes == 2;
+    }
+
+    // Validación Fecha - Campos Separados
+    public static boolean validarFecha(int dia, int mes, int any) {
+        // Calcula cuantos dias tiene el mes de la fecha
+        int numDias = calcularDiasMes(mes, any);
+
+        // Devuelve el resultado de la validación
+        return dia >= 1 && dia <= numDias;
+    }
+
+    // Obtener el número de dias del mes del año
+    public static int calcularDiasMes(int mes, int any) {
+        // Número de dias del mes
+        int numDias;
+
+        // Análisis
+        switch (mes) {
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
+                numDias = 31;
+                break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                numDias = 30;
+                break;
+            case 2:
+                numDias = comprobarBisiesto(any) ? 29 : 28;
+                break;
+            default:
+                numDias = 0;
+        }
+
+        // Devolución resultado
+        return numDias;
+    }
+
+    // Comprobar si el año es bisiesto
+    public static boolean comprobarBisiesto(int any) {
+        return any % 400 == 0 || any % 100 != 0 && any % 4 == 0;
     }
 }
