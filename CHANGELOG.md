@@ -1,6 +1,5 @@
 <pre>
 
-> Simplified CHANGELOG.md (This file)
-> Simplified README.md
+> Improved UtilesDNI and UtilesValidacion
 
 </pre>
